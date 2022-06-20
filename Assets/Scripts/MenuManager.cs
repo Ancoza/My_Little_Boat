@@ -37,8 +37,12 @@ public class MenuManager : MonoBehaviour
 
     public void OpenStore()
     {
+        
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Shop", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        /*
         HideMainMenu();
         ShowStoreCanvas();
+        */
     }
 
     public void Play()
