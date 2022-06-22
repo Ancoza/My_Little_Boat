@@ -94,7 +94,6 @@ public class Environment : MonoBehaviour
         currentBuildingsB.Remove(oldBuildingB);
         Destroy(oldBuildingB.gameObject);
     }
-
     public void DeleteAllBuildings()
     {
         for (int i = 0; i < currentBuildings.Count; i++)
