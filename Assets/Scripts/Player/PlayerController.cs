@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     {
     
     #if UNITY_EDITOR
-        Debug.Log("Hello");
         _horizontalMove = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * _horizontalMove * _velocityMove * Time.deltaTime);
         

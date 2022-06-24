@@ -31,11 +31,12 @@ public class Spawner : MonoBehaviour
     {
         var positionX = positionSpawner[Random.Range(0, positionSpawner.Length)];
         Vector3 position = new Vector3(positionX, transform.position.y, transform.position.z);
-        Instantiate(coin, position,Quaternion.identity);
+        Instantiate(coin, transform, false);
+        //Instantiate(coin, position,Quaternion.identity);
             
         var positionX2 = positionSpawner[Random.Range(0, positionSpawner.Length)];
         Vector3 position2 = new Vector3(positionX2, transform.position.y, transform.position.z);
-        Instantiate(enemy, position2,Quaternion.identity);
+        Instantiate(enemy, transform, false);
         time = 0.0f;
     }
 }
