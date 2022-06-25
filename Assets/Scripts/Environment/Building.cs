@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    public Transform startPosition, finishPosition;
+    public Transform finishPosition;
     
     float _speed;
     

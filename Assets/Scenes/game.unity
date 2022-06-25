@@ -1263,11 +1263,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildings:
-  - {fileID: -743196850953768966, guid: 108b26f1265734647ab446586fdcfab5, type: 3}
-  - {fileID: -743196850953768966, guid: 108b26f1265734647ab446586fdcfab5, type: 3}
+  - {fileID: 66101899027349572, guid: fb1eb55333e346f4a8eccca30ab2ad11, type: 3}
+  - {fileID: 7154461950755776071, guid: 53e3a197e603d6a4991a4233c26a94da, type: 3}
   buildingsB:
-  - {fileID: 8877959062844230175, guid: ec2f6052313c3fa49a885685f5068586, type: 3}
-  - {fileID: 8877959062844230175, guid: ec2f6052313c3fa49a885685f5068586, type: 3}
+  - {fileID: 9221761605595275010, guid: 44cd01184b752634cbed076f8138bacc, type: 3}
+  - {fileID: 4514476551966323034, guid: f275cf6a3f15c9e488c1c40058ae5174, type: 3}
   currentBuildings: []
   currentBuildingsB: []
   positionA: 2

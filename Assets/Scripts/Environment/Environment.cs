@@ -34,7 +34,7 @@ public class Environment : MonoBehaviour
     }
     private void AddA()
     {
-        int randomIdx = Random.Range(1, buildings.Count);
+        int randomIdx = Random.Range(0, buildings.Count);
 
         Building building;
 
@@ -60,7 +60,7 @@ public class Environment : MonoBehaviour
     }
     private void AddB()
     {
-        int randomIdx = Random.Range(1, buildingsB.Count);
+        int randomIdx = Random.Range(0, buildingsB.Count);
 
         Building building;
 
