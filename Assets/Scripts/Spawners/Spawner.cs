@@ -4,39 +4,57 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject coin;
+    public Coin coinPrefab;
 
-    public GameObject enemy;
+    public Enemy enemyPrefab;
+
+    public Transform coins;
+    public Transform enemies;
 
     private float _nextRespawn = 2f;
-    private float time;
-    
-    float[] positionSpawner = { -1.0F, 0.0F, 1.0F };
+    private float _time;
+
+    readonly float[] _positionSpawner = { -1.0F, 0.0F, 1.0F };
 
     private void Start()
     {
-        time = 0;
+        _time = 0;
     }
 
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= _nextRespawn)
+        _time += Time.deltaTime;
+        if (_time >= _nextRespawn)
         {
-            Spaw();
+            Spawn();
         }
     }
 
-    void Spaw()
+    void Spawn()
     {
-        var positionX = positionSpawner[Random.Range(0, positionSpawner.Length)];
-        Vector3 position = new Vector3(positionX, transform.position.y, transform.position.z);
-        Instantiate(coin, transform, false);
-        //Instantiate(coin, position,Quaternion.identity);
-            
-        var positionX2 = positionSpawner[Random.Range(0, positionSpawner.Length)];
-        Vector3 position2 = new Vector3(positionX2, transform.position.y, transform.position.z);
-        Instantiate(enemy, transform, false);
-        time = 0.0f;
+        GenerateCoin();
+        GenerateEnemy();
+        
+        _time = 0.0f;
+    }
+
+    void GenerateEnemy()
+    {
+        var positionX = _positionSpawner[Random.Range(0, _positionSpawner.Length)];
+        Vector3 position = new Vector3(positionX, 0, 40);
+        Enemy enemy;
+        
+        enemy = Instantiate(enemyPrefab, enemies, false);
+        enemy.transform.position = position;
+    }
+
+    void GenerateCoin()
+    {
+        var positionX = _positionSpawner[Random.Range(0, _positionSpawner.Length)];
+        Vector3 position = new Vector3(positionX, 0, 40);
+        Coin coin;
+        
+        coin = Instantiate(coinPrefab, coins, false);
+        coin.transform.position = position;
     }
 }

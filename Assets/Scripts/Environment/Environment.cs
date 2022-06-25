@@ -71,7 +71,7 @@ public class Environment : MonoBehaviour
             Vector3 position = new Vector3(positionB, 0, currentBuildingsB[lastPosition].finishPosition.position.z);
             
             //Instantiate and add to currentBuildings
-            building = Instantiate(buildingsB[randomIdx], transform, false);
+            building = Instantiate(buildingsB[randomIdx], this.transform, false);
             building.gameObject.transform.position = position;
             currentBuildingsB.Add(building);
         }
@@ -79,7 +79,7 @@ public class Environment : MonoBehaviour
         {
             Vector3 position = new Vector3(positionB, 0,0);
             //Create first Building
-            building = Instantiate(buildingsB[randomIdx], transform, false);
+            building = Instantiate(buildingsB[randomIdx], this.transform, false);
             building.gameObject.transform.position = position;
             currentBuildingsB.Add(building);
         }

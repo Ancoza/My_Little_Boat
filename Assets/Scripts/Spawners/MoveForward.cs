@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class MoveForward : MonoBehaviour
 {
-    public int speed;
+    public float speed;
     public int direction;
     void Update()
     {
-        transform.Translate(Vector3.back * speed * Time.deltaTime);
+        speed = GameManager.SharedInstance.GetGameVelocity();
+        
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
         if (transform.position.z <= -1)
         {
             Destroy(gameObject);

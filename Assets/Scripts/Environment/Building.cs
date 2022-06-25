@@ -4,11 +4,13 @@ public class Building : MonoBehaviour
 {
     public Transform startPosition, finishPosition;
     
-    float speed = 5;
+    float _speed;
     
     private void Update()
     {
-        transform.Translate(Vector3.back * speed * Time.deltaTime);
+        _speed = GameManager.SharedInstance.GetGameVelocity();
+        
+        transform.Translate(Vector3.back * _speed * Time.deltaTime);
         
         if (transform.position.z <= -6)
         {
