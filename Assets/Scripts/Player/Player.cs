@@ -31,8 +31,10 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             SavePlayer();
-            SceneManager.UnloadSceneAsync("Game");
-            MenuManager.SharedInstance.BackMain();
+            SceneManager.LoadScene("Scenes/Main");
+            //SceneManager.LoadScene("Scenes/Main", LoadSceneMode.Single);
+            //SceneManager.UnloadSceneAsync("Game");
+            //MenuManager.SharedInstance.BackMain();
         }
     }
 

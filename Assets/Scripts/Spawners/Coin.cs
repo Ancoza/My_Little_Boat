@@ -8,5 +8,14 @@ public class Coin : MonoBehaviour
     private int _value = 1;
     [SerializeField] 
     private AudioSource _audioSource;
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //_audioSource.PlayOneShot();
+            
+            Destroy(gameObject);
+        }
+    }
 }

@@ -454,6 +454,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8764403747236833621, guid: e9ccc27bb6f9f944e8bda508e30456a5, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9ccc27bb6f9f944e8bda508e30456a5, type: 3}
 --- !u!1 &636764061 stripped
@@ -1333,8 +1337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa94f476a2a5ef44a1d87f48e96704b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPrefab: {fileID: -3291166621869593658, guid: 062ce365a9cda3e4c9210255e46a39e5, type: 3}
-  enemyPrefab: {fileID: 3967819658115149505, guid: 6c8788b3402c3b1439a2548b0e771241, type: 3}
+  coinPrefab: {fileID: 3029754306889525932, guid: 1f45ef59233cdb943a7c39a569c602c7, type: 3}
+  enemyPrefab: {fileID: 5704290195399327639, guid: 653849181b1b65449a46105c92b02a51, type: 3}
   coins: {fileID: 1870328623}
   enemies: {fileID: 600480643}
 --- !u!1 &1736433140

@@ -21,8 +21,9 @@ public class PlayerController : MonoBehaviour
     #if UNITY_EDITOR
         _horizontalMove = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * _horizontalMove * _velocityMove * Time.deltaTime);
+        Debug.Log(_horizontalMove);
         
-    #endif
+    #else
         
         Input.gyro.enabled = true;
         /*
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(-limX, pos.y, pos.z);
         }
         
-        
+     #endif
     }
 
 }
