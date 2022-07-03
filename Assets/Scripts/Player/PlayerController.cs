@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             _horizontalMove = Input.gyro.rotationRate.y;
             //velocityMove = Input.gyro.userAcceleration.z;
         
-            transform.Translate(Vector3.right * _horizontalMove * _velocityMove * Time.deltaTime);
+            transform.Translate(Vector3.right * _horizontalMove * velocityMove * Time.deltaTime);
         }
 #endif
         Vector3 pos = gameObject.transform.position;
