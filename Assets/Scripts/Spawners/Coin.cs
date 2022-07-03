@@ -1,21 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private int _value = 1;
-    [SerializeField] 
     private AudioSource _audioSource;
+    private AudioClip _audio;
+    private GameObject _model;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        _audio = _audioSource.clip;
+        _model = gameObject.transform.GetChild(0).gameObject;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            //_audioSource.PlayOneShot();
-            
-            Destroy(gameObject);
+            _audioSource.PlayOneShot(_audio);
+            _model.SetActive(false);
         }
     }
+    
 }

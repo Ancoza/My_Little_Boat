@@ -1,7 +1,6 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System.IO;
-using System.Net.NetworkInformation;
 
 public static class SaveSystem
 {
@@ -12,25 +11,26 @@ public static class SaveSystem
 
         if (!File.Exists(path))
         {
-            FileStream stream = new FileStream(path, FileMode.Create);
+            FileStream stream = new FileStream(path, FileMode.CreateNew);
             PlayerData data = new PlayerData(player);
             formatter.Serialize(stream, data);
             stream.Close();
         }
         else
         {
-            player.coins += LoadPlayer().coins;
-            FileStream stream = new FileStream(path, FileMode.Create);
+            FileStream stream = new FileStream(path, FileMode.Open);
             PlayerData data = new PlayerData(player);
             formatter.Serialize(stream, data);
             stream.Close();
+            
             player.coins = 0;
         }
     }
-
+    
     public static PlayerData LoadPlayer()
     {
         string path = Application.persistentDataPath + "/player.fun";
+        
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -41,11 +41,17 @@ public static class SaveSystem
             
             return data;
         }
-        else
-        {
-            return null;
-        }
+        return null;
+    }
+    
+    public static void Delete()
+    {
+        string path = Application.persistentDataPath + "/player.fun";
         
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
     }
 
 }

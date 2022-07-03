@@ -9,8 +9,7 @@ public class Building : MonoBehaviour
     private void Update()
     {
         _speed = GameManager.SharedInstance.GetGameVelocity();
-        
-        transform.Translate(Vector3.back * _speed * Time.deltaTime);
+        transform.Translate(Vector3.back * (_speed * Time.deltaTime));
         
         if (transform.position.z <= -6)
         {

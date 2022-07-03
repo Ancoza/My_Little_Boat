@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class MenuManager : MonoBehaviour
     
     public void Play()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game", UnityEngine.SceneManagement.LoadSceneMode.Single);
+        SceneManager.LoadScene("Game", LoadSceneMode.Single);
         HideMainMenu();
     }
     

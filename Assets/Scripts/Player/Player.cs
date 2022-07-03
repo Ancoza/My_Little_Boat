@@ -1,13 +1,19 @@
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     public int coins;
     public float score;
 
-    public TextMeshProUGUI Tscore, Tcoins;
+    // void Update()
+    // {
+    //      if (GameManager.SharedInstance.currentGameState == GameState.InGame)
+    //      {
+    //          score += Time.deltaTime;
+    //      }
+    // }
+
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
@@ -19,30 +25,36 @@ public class Player : MonoBehaviour
         coins = data.coins;
         score = data.score;
     }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Coin"))
-        {
-            Debug.Log("Ready");
-            coins += 1;
-        }
 
-        if (other.CompareTag("Enemy"))
-        {
-            SavePlayer();
-            SceneManager.LoadScene("Scenes/Main");
-            //SceneManager.LoadScene("Scenes/Main", LoadSceneMode.Single);
-            //SceneManager.UnloadSceneAsync("Game");
-            //MenuManager.SharedInstance.BackMain();
-        }
+    public void AddCoin()
+    {
+        coins++;
+    }
+    public void AddCoins(int previousCoins)
+    {
+        coins += previousCoins;
+    }
+    public int GetCoins()
+    {
+        return coins;
+    }
+    public float GetScore()
+    {
+        return score;
     }
 
-    private void Update()
+    public void SumCoins()
     {
-        score += Time.deltaTime;
-        Tscore.text = "" + score.ToString("F2");
+        PlayerData data = SaveSystem.LoadPlayer();
+        if (data == null)
+        {
+            SavePlayer();
+        }
+        else
+        {
+            coins += data.coins;
+            SavePlayer();
+        }
 
-        Tcoins.text = "" + coins;
     }
 }
