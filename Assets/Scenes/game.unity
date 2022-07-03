@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 370de2bd49ca7e64583c6bf06970cd1d, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 9438fd04add11424ab59bd42c30306a7, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1219,7 +1219,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 3029754306889525932, guid: 1f45ef59233cdb943a7c39a569c602c7, type: 3}
-  enemyPrefab: {fileID: 5704290195399327639, guid: 653849181b1b65449a46105c92b02a51, type: 3}
+  allEnemies:
+  - {fileID: 5704290195399327639, guid: 653849181b1b65449a46105c92b02a51, type: 3}
+  - {fileID: 5704290195399327639, guid: 653849181b1b65449a46105c92b02a51, type: 3}
   coins: {fileID: 1870328623}
   enemies: {fileID: 600480643}
 --- !u!1 &1736433140

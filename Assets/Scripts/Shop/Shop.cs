@@ -39,7 +39,7 @@ public class Shop : MonoBehaviour
         boat.transform.Rotate(Vector3.up * 15 * Time.deltaTime);
 
         currentBoat = allBoats[currentIndex];
-        boatPrice.text = "Price: " + currentBoat.GetComponent<Boat>().price;
+        boatPrice.text = "$ " + currentBoat.GetComponent<Boat>().price;
         
         #if UNITY_EDITOR
 
@@ -65,7 +65,7 @@ public class Shop : MonoBehaviour
         {
             Destroy(boat.transform.GetChild(0).gameObject); 
             currentBoat = Instantiate(allBoats[currentIndex], boat.transform,false);
-            currentBoat.transform.position = new Vector3(0, 2, 0);
+            //currentBoat.transform.position = new Vector3(0, 0, 0);
         }else if (currentIndex >= allBoats.Count)
         {
             currentIndex -= 1;
@@ -79,7 +79,7 @@ public class Shop : MonoBehaviour
         {
             Destroy(boat.transform.GetChild(0).gameObject); 
             currentBoat = Instantiate(allBoats[currentIndex], boat.transform,false);
-            currentBoat.transform.position = new Vector3(0, 2, 0);
+            //currentBoat.transform.position = new Vector3(0, 0, 0);
         }else if (currentIndex < 0)
         {
             currentIndex += 1;
@@ -90,7 +90,7 @@ public class Shop : MonoBehaviour
     private void LoadBoat()
     {
         currentBoat = Instantiate(allBoats[currentIndex], boat.transform,false);
-        currentBoat.transform.position = new Vector3(0, 2, 0);
+        //currentBoat.transform.position = new Vector3(0, 0, 0);
         
     }
 

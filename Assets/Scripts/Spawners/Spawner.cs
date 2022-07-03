@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public Coin coinPrefab;
 
-    public Enemy enemyPrefab;
+    public Enemy[] allEnemies;
 
     public Transform coins;
     public Transform enemies;
@@ -40,11 +40,12 @@ public class Spawner : MonoBehaviour
 
     void GenerateEnemy()
     {
+        int idx = Random.Range(0, allEnemies.Length);
         var positionX = _positionSpawner[Random.Range(0, _positionSpawner.Length)];
         Vector3 position = new Vector3(positionX, 0, 40);
         Enemy enemy;
         
-        enemy = Instantiate(enemyPrefab, enemies, false);
+        enemy = Instantiate(allEnemies[idx], enemies, false);
         enemy.transform.position = position;
     }
 
