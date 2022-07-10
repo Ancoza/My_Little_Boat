@@ -11,13 +11,12 @@ public class PlayerController : MonoBehaviour
     private float _horizontalMove;
     private float _verticalMove;
     private float _limX;
+    private float _score;
     
     public GameObject explosion;
     public GameObject parent;
     public GameObject boatParent;
-
-    public Button btnR;
-    public Button btnL;
+    
     private Player _player;
     
     
@@ -35,7 +34,6 @@ public class PlayerController : MonoBehaviour
     {
     
 #if UNITY_EDITOR
-        Debug.Log("Hola");
         if (GameManager.SharedInstance.currentGameState == GameState.InGame && 
             GameManager.SharedInstance.currentGameController == GameController.Gyroscope)
         {
@@ -45,7 +43,6 @@ public class PlayerController : MonoBehaviour
         }else if(GameManager.SharedInstance.currentGameState == GameState.InGame && 
                  GameManager.SharedInstance.currentGameController == GameController.Touch)
         {
-            Debug.Log("Hola2");
             int i = 0;
             while (i < Input.touchCount)
             {
@@ -66,7 +63,6 @@ public class PlayerController : MonoBehaviour
             SaveSystem.Delete();
         }
 #else
-        Debug.Log("Hola2");
         if (GameManager.SharedInstance.currentGameState == GameState.InGame && 
             GameManager.SharedInstance.currentGameController == GameController.Gyroscope)
         {
@@ -83,11 +79,11 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetTouch(i).position.x > _screenWidth / 2)
                 {
-                    player.GetComponent<PlayerController>().MoveSides(1.0f);
+                    MoveSides(1.0f);
                 }
                 if (Input.GetTouch(i).position.x < _screenWidth / 2)
                 {
-                    player.GetComponent<PlayerController>().MoveSides(-1.0f);
+                    MoveSides(-1.0f);
                 }
                 ++i;
             }
@@ -103,8 +99,9 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(-_limX, pos.y, pos.z);
         }
 
+        _score = GameManager.SharedInstance.GetDistance();
         tmpCoins.text = "" + _player.GetCoins();
-        tmpScore.text = "" + _player.GetScore().ToString("F");
+        tmpScore.text = "" + _score.ToString("0000");
 
     }
 
@@ -120,7 +117,9 @@ public class PlayerController : MonoBehaviour
             fx.transform.position = transform.position;
             _player.gameObject.GetComponentInChildren<Animation>().Play();
             GameManager.SharedInstance.GameOver();
+            _player.AddScore(GameManager.SharedInstance.GetDistance());
             _player.SumCoins();
+
         }
     }
 

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,13 +7,14 @@ public class Enemy : MonoBehaviour
     private AudioClip _audio;
     private GameObject _model;
 
-    public GameObject _fxExplosion;
+    public GameObject fxExplosion;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         _audio = _audioSource.clip;
         _model = gameObject.transform.GetChild(0).gameObject;
+        _model.transform.rotation = Random.rotation;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,9 +22,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _audioSource.PlayOneShot(_audio);
-            
-            //_model.SetActive(false);
-            GameObject fx = Instantiate(_fxExplosion, transform, false);
+            Instantiate(fxExplosion, transform, false);
         }
     }
 }

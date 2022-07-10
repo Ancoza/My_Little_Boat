@@ -49,6 +49,9 @@ AudioMixerController:
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}
+  - {fileID: 1767061596126768834}
+  - {fileID: 4406552998181652152}
+  - {fileID: 3916283790720100115}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -103,10 +106,22 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snapshot
+  m_Name: Default
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: f4e707ec7e4ee7b4cbd145a007f0b7d3
   m_FloatValues: {}
+  m_TransitionOverrides: {}
+--- !u!245 &1767061596126768834
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MuteMusic
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: 1196747329d9e304f9fdd4c200e3079f
+  m_FloatValues:
+    f4f077ce0393b8446b22365b107af901: -80
   m_TransitionOverrides: {}
 --- !u!244 &2801292602375739802
 AudioMixerEffectController:
@@ -122,6 +137,30 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!245 &3916283790720100115
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Pause
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: c9e620afa9968b54cbcb3d7897b0e142
+  m_FloatValues:
+    a7f5405e313650e47a12dc7d175d16be: -10.345207
+  m_TransitionOverrides: {}
+--- !u!245 &4406552998181652152
+AudioMixerSnapshotController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MuteFx
+  m_AudioMixer: {fileID: 24100000}
+  m_SnapshotID: e579f39cfb73b1d4ab29cbab15bd6555
+  m_FloatValues:
+    dd635deb6f5652b4fbabea8e282e94c9: -80
+  m_TransitionOverrides: {}
 --- !u!244 &5401634966830026072
 AudioMixerEffectController:
   m_ObjectHideFlags: 3

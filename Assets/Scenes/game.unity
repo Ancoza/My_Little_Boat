@@ -601,11 +601,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!1 &719411033 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3599776970673807485, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-  m_PrefabInstance: {fileID: 2035281457}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &829798263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3599776970673807484, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
@@ -629,7 +624,6 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
-  - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -750,19 +744,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewDeth: {fileID: 174135168}
   transitionSpeed: 1
---- !u!114 &963194231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b4cae8961af614d968d3c33e3696e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 719411033}
 --- !u!1 &1173546498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,8 +1254,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 3029754306889525932, guid: 1f45ef59233cdb943a7c39a569c602c7, type: 3}
   allEnemies:
-  - {fileID: 5704290195399327639, guid: 653849181b1b65449a46105c92b02a51, type: 3}
-  - {fileID: 5704290195399327639, guid: 653849181b1b65449a46105c92b02a51, type: 3}
+  - {fileID: 380558923605153569, guid: 6a9b75ae2dd77644ab57f99cdb640965, type: 3}
+  - {fileID: 675308054071286573, guid: b2f9423c66dd407468902311a3597785, type: 3}
+  - {fileID: 2039314466721781553, guid: 8796743b217fd1d418e729f7c1d17974, type: 3}
   coins: {fileID: 1870328623}
   enemies: {fileID: 600480643}
 --- !u!1 &1736433140
@@ -1835,7 +1817,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGameState: 0
   currentGameController: 0
-  mainCamera: {fileID: 0}
   AllBoats:
   - {fileID: -129709689381898678, guid: 0910d87a21f3d2e43bd5c1eb467fcc6c, type: 3}
   - {fileID: -3721906506538977032, guid: c0b0a2ea9e09db344ab87c4705b04da2, type: 3}
@@ -1843,7 +1824,6 @@ MonoBehaviour:
   - {fileID: 1990150516006225637, guid: 12dad0c25c4a5a8419da72ad05d136ca, type: 3}
   - {fileID: -5154532545066738737, guid: 57fe55a396548e549bfeb9759e6dd913, type: 3}
   - {fileID: 4099161616698917532, guid: e9ccc27bb6f9f944e8bda508e30456a5, type: 3}
-  _gameVelocity: 5
 --- !u!114 &2112767706
 MonoBehaviour:
   m_ObjectHideFlags: 0

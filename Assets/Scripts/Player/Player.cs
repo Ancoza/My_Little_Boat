@@ -6,14 +6,6 @@ public class Player : MonoBehaviour
     public int coins;
     public float score;
 
-    // void Update()
-    // {
-    //      if (GameManager.SharedInstance.currentGameState == GameState.InGame)
-    //      {
-    //          score += Time.deltaTime;
-    //      }
-    // }
-
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
@@ -30,17 +22,22 @@ public class Player : MonoBehaviour
     {
         coins++;
     }
-    public void AddCoins(int previousCoins)
-    {
-        coins += previousCoins;
-    }
     public int GetCoins()
     {
         return coins;
     }
-    public float GetScore()
+    
+    public void AddScore(float previousScore)
     {
-        return score;
+        PlayerData data = SaveSystem.LoadPlayer();
+        if (data.score > previousScore)
+        {
+            score = data.score;
+        }
+        else
+        {
+            score = previousScore;
+        }
     }
 
     public void SumCoins()
