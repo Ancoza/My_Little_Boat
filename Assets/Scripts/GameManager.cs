@@ -9,11 +9,19 @@ public enum GameState{
     InGame,
     GameOver
 }
+public enum GameController
+{
+    Touch,
+    Gyroscope
+}
 public class GameManager : MonoBehaviour
 {
     public static GameManager SharedInstance;
     public GameState currentGameState;
+    public GameController currentGameController;
 
+    public Camera mainCamera;
+    
     public List<Boat> AllBoats;
 
     [SerializeField]
@@ -33,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         _gameVelocity = 10.0f;
         currentGameState = GameState.InGame;
+        Controller();
     }
     
 
@@ -94,7 +103,36 @@ public class GameManager : MonoBehaviour
         }
         currentGameState = newGameState;
     }
-    
+
+    void SetGameController(GameController newGameController)
+    {
+        if (newGameController == GameController.Gyroscope)
+        {
+            PlayerPrefs.SetInt("GameController",0);
+            //mainCamera.GetComponent<TouchController>().enabled = false;
+        }else if (newGameController == GameController.Touch)
+        {
+            PlayerPrefs.SetInt("GameController",1);
+            //mainCamera.GetComponent<TouchController>().enabled = true;
+        }
+        currentGameController = newGameController;
+    }
+
+    void Controller()
+    {
+        if (!PlayerPrefs.HasKey("GameController"))
+        {
+            PlayerPrefs.GetInt("GameController", 0);
+            SetGameController(GameController.Gyroscope);
+        }
+        else if (PlayerPrefs.GetInt("GameController") == 1)
+        {
+            SetGameController(GameController.Touch); 
+        }else if (PlayerPrefs.GetInt("GameController") == 0)
+        {
+            SetGameController(GameController.Gyroscope);
+        }
+    }
     IEnumerator LoadMain()
     {
         yield return new WaitForSeconds(5);

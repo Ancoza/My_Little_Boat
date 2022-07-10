@@ -60,7 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc36037f6338acb48af39169e2ad519d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
   pointDestruction: -1
 --- !u!135 &7995774122638489081
 SphereCollider:
@@ -84,7 +83,7 @@ AudioSource:
   m_GameObject: {fileID: 3029754306889525934}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2587865797868404578, guid: fb8fb2b6e2660d342a8bf166aced6936, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7ad2257101a0f014fa2174ce4a974f7e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
