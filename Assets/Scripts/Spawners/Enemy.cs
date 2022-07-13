@@ -5,7 +5,6 @@ public class Enemy : MonoBehaviour
 {
     private AudioSource _audioSource;
     private AudioClip _audio;
-    private GameObject _model;
 
     public GameObject fxExplosion;
 
@@ -13,8 +12,6 @@ public class Enemy : MonoBehaviour
     {
         _audioSource = GetComponent<AudioSource>();
         _audio = _audioSource.clip;
-        _model = gameObject.transform.GetChild(0).gameObject;
-        _model.transform.rotation = Random.rotation;
     }
 
     private void OnTriggerEnter(Collider other)

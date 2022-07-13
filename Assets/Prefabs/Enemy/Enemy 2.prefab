@@ -62,7 +62,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7278345918802763079, guid: 64aead05a4573864abe7f303895b1329, type: 3}
   m_PrefabInstance: {fileID: 394084654029412754}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4784678842636573201
+--- !u!1001 &2801153990387963079
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -72,10 +72,6 @@ PrefabInstance:
     - target: {fileID: 1322823532792000, guid: c230cf9ffea1ef74b9eca483ad69d225, type: 3}
       propertyPath: m_Name
       value: Wooden_barrel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1322823532792000, guid: c230cf9ffea1ef74b9eca483ad69d225, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4661929206199864, guid: c230cf9ffea1ef74b9eca483ad69d225, type: 3}
       propertyPath: m_RootOrder
@@ -87,7 +83,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4661929206199864, guid: c230cf9ffea1ef74b9eca483ad69d225, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4661929206199864, guid: c230cf9ffea1ef74b9eca483ad69d225, type: 3}
       propertyPath: m_LocalPosition.z
