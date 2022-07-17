@@ -14,7 +14,7 @@ public class MainManager : MonoBehaviour
     private TextMeshProUGUI coinCounter;
     void Start()
     {
-        player.LoadPlayer();
+        CreateData();
         maxScore.text = "Max Score: " + player.score.ToString("0000");
         Instantiate(GetBoat().gameObject, boatParent.transform);
     }
@@ -26,7 +26,20 @@ public class MainManager : MonoBehaviour
         maxScore.text = "Max Score: " + player.score.ToString("0000");
         boatParent.transform.Rotate(Vector3.up * 15 * Time.deltaTime);
     }
-    
+
+    public void CreateData()
+    {
+        if (SaveSystem.LoadPlayer() == null)
+        {
+            Debug.Log("NUll");
+            player.SavePlayer();
+        }
+        else
+        {
+            Debug.Log("Load Player");
+            player.LoadPlayer();
+        }
+    }
     public Boat GetBoat()
     {
         Boat boat = null;

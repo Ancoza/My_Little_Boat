@@ -1,6 +1,7 @@
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System.IO;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public static class SaveSystem
 {
@@ -11,7 +12,7 @@ public static class SaveSystem
 
         if (!File.Exists(path))
         {
-            FileStream stream = new FileStream(path, FileMode.CreateNew);
+            FileStream stream = new FileStream(path, FileMode.Create);
             PlayerData data = new PlayerData(player);
             formatter.Serialize(stream, data);
             stream.Close();
@@ -42,6 +43,7 @@ public static class SaveSystem
             return data;
         }
         return null;
+
     }
     
     public static void Delete()

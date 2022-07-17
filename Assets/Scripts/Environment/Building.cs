@@ -4,7 +4,7 @@ public class Building : MonoBehaviour
 {
     public Transform finishPosition;
     
-    float _speed;
+    float _speed = 0;
     
     private void Update()
     {
