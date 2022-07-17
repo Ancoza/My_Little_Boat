@@ -15,15 +15,18 @@ public class MainManager : MonoBehaviour
     void Start()
     {
         CreateData();
-        maxScore.text = "Max Score: " + player.score.ToString("0000");
-        Instantiate(GetBoat().gameObject, boatParent.transform);
+        maxScore.text = "" + player.score.ToString("0000");
+        
+        var b = Instantiate(GetBoat().gameObject, boatParent.transform,false);
+        b.transform.parent = boatParent.transform;
+        b.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
         coinCounter.text = "" + player.GetCoins();
-        maxScore.text = "Max Score: " + player.score.ToString("0000");
+        maxScore.text = "" + player.score.ToString("0000");
         boatParent.transform.Rotate(Vector3.up * 15 * Time.deltaTime);
     }
 
