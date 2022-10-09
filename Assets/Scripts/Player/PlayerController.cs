@@ -16,18 +16,30 @@ public class PlayerController : MonoBehaviour
     public GameObject explosion;
     public GameObject parent;
     public GameObject boatParent;
+    public ParticleSystem a, b;
     
     private Player _player;
     
-    
+    float direction = 0.0f;
+    bool life = true;
+
+    Animator anim;
     private float _screenWidth;
+
+    private void Awake()
+    {
+        _player = gameObject.GetComponent<Player>();
+        anim = _player.gameObject.GetComponentInChildren<Animator>();
+        anim.SetBool("alive", true);
+    }
 
     void Start()
     {
-        _player = gameObject.GetComponent<Player>();
+        Instantiate(GameManager.SharedInstance.GetBoat().gameObject, boatParent.transform);
         _limX = 1.5f;
         _screenWidth = Screen.width;
-        Instantiate(GameManager.SharedInstance.GetBoat().gameObject, boatParent.transform);
+        
+        
     }
 
     void Update()
@@ -46,16 +58,40 @@ public class PlayerController : MonoBehaviour
             int i = 0;
             while (i < Input.touchCount)
             {
+
                 if (Input.GetTouch(i).position.x > _screenWidth / 2)
                 {
+                    //anim.SetBool("move", true);
                     MoveSides(1.0f);
+                    if (Input.GetTouch(i).phase == TouchPhase.Began)
+                    {
+                        anim.SetBool("move", true);
+                        anim.SetFloat("direction", 1.0f);
+                    }else if (Input.GetTouch(i).phase == TouchPhase.Ended)
+                    {
+                        anim.SetBool("move", false);
+                        anim.SetFloat("direction", 0.0f);
+                    }
+                    
+
                 }
                 if (Input.GetTouch(i).position.x < _screenWidth / 2)
                 {
                     MoveSides(-1.0f);
+                    if (Input.GetTouch(i).phase == TouchPhase.Began)
+                    {
+                        anim.SetBool("move", true);
+                        anim.SetFloat("direction", -1.0f);
+                    }else if (Input.GetTouch(i).phase == TouchPhase.Ended)
+                    {
+                        anim.SetBool("move", false);
+                        anim.SetFloat("direction", 0.0f);
+                    }
                 }
                 ++i;
             }
+
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -115,7 +151,10 @@ public class PlayerController : MonoBehaviour
         {
             GameObject fx = Instantiate(explosion,parent.transform,false);
             fx.transform.position = transform.position;
-            _player.gameObject.GetComponentInChildren<Animation>().Play();
+            //_player.gameObject.GetComponentInChildren<Animation>().Play();
+            a.Stop();
+            b.Stop();
+            anim.SetBool("alive", false);
             GameManager.SharedInstance.GameOver();
             _player.AddScore(GameManager.SharedInstance.GetDistance());
             _player.SumCoins();
@@ -128,6 +167,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.SharedInstance.currentGameState == GameState.InGame)
         {
             transform.Translate(Vector3.right * horizontalInput * velocityMove * Time.deltaTime);
+            //anim.SetBool("move", false);
         }
     }
     
