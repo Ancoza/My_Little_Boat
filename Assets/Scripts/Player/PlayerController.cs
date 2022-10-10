@@ -1,45 +1,46 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
-    public TextMeshProUGUI tmpScore, tmpCoins;
+    [Header("UI")] 
+    public TextMeshProUGUI tmpScore;
+    public TextMeshProUGUI tmpCoins;
+
+    [Header("Effects")]
+    public GameObject explosion;
+    public GameObject parent;
+    public GameObject boatParent;
+
+    [Header("Stella")] 
+    public ParticleSystem a;
+    public ParticleSystem b;
     
+    private Animator anim;
+    private float _screenWidth;
+    private Player _player;
     [SerializeField]
     private float velocityMove;
     private float _horizontalMove;
     private float _verticalMove;
     private float _limX;
     private float _score;
-    
-    public GameObject explosion;
-    public GameObject parent;
-    public GameObject boatParent;
-    public ParticleSystem a, b;
-    
-    private Player _player;
-    
-    float direction = 0.0f;
-    bool life = true;
-
-    Animator anim;
-    private float _screenWidth;
 
     private void Awake()
     {
+        _screenWidth = Screen.width;
+        _limX = 1.5f;
         _player = gameObject.GetComponent<Player>();
         anim = _player.gameObject.GetComponentInChildren<Animator>();
         anim.SetBool("alive", true);
+        anim.SetBool("move", false);
     }
 
     void Start()
     {
         Instantiate(GameManager.SharedInstance.GetBoat().gameObject, boatParent.transform);
-        _limX = 1.5f;
-        _screenWidth = Screen.width;
-        
-        
     }
 
     void Update()
@@ -49,96 +50,44 @@ public class PlayerController : MonoBehaviour
         if (GameManager.SharedInstance.currentGameState == GameState.InGame && 
             GameManager.SharedInstance.currentGameController == GameController.Gyroscope)
         {
-            _horizontalMove = Input.GetAxis("Horizontal");
-            transform.Translate(Vector3.right * _horizontalMove * velocityMove * Time.deltaTime);
-
-        }else if(GameManager.SharedInstance.currentGameState == GameState.InGame && 
+            MoveGyro();
+        }
+        else if(GameManager.SharedInstance.currentGameState == GameState.InGame && 
                  GameManager.SharedInstance.currentGameController == GameController.Touch)
         {
-            int i = 0;
-            while (i < Input.touchCount)
-            {
-
-                if (Input.GetTouch(i).position.x > _screenWidth / 2)
-                {
-                    //anim.SetBool("move", true);
-                    MoveSides(1.0f);
-                    if (Input.GetTouch(i).phase == TouchPhase.Began)
-                    {
-                        anim.SetBool("move", true);
-                        anim.SetFloat("direction", 1.0f);
-                    }else if (Input.GetTouch(i).phase == TouchPhase.Ended)
-                    {
-                        anim.SetBool("move", false);
-                        anim.SetFloat("direction", 0.0f);
-                    }
-                    
-
-                }
-                if (Input.GetTouch(i).position.x < _screenWidth / 2)
-                {
-                    MoveSides(-1.0f);
-                    if (Input.GetTouch(i).phase == TouchPhase.Began)
-                    {
-                        anim.SetBool("move", true);
-                        anim.SetFloat("direction", -1.0f);
-                    }else if (Input.GetTouch(i).phase == TouchPhase.Ended)
-                    {
-                        anim.SetBool("move", false);
-                        anim.SetFloat("direction", 0.0f);
-                    }
-                }
-                ++i;
-            }
-
-            
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SaveSystem.Delete();
+            MoveTouch();
         }
 #else
+        //Mobile controllers
         if (GameManager.SharedInstance.currentGameState == GameState.InGame && 
             GameManager.SharedInstance.currentGameController == GameController.Gyroscope)
         {
-            Input.gyro.enabled = true;
-            _horizontalMove = Input.gyro.rotationRate.y;
-            //velocityMove = Input.gyro.userAcceleration.z;
-        
-            transform.Translate(Vector3.right * _horizontalMove * velocityMove * Time.deltaTime);
-        }else if(GameManager.SharedInstance.currentGameState == GameState.InGame && 
+            MoveGyro();
+        }
+        else if(GameManager.SharedInstance.currentGameState == GameState.InGame && 
             GameManager.SharedInstance.currentGameController == GameController.Touch)
         {
-            int i = 0;
-            while (i < Input.touchCount)
-            {
-                if (Input.GetTouch(i).position.x > _screenWidth / 2)
-                {
-                    MoveSides(1.0f);
-                }
-                if (Input.GetTouch(i).position.x < _screenWidth / 2)
-                {
-                    MoveSides(-1.0f);
-                }
-                ++i;
-            }
+            MoveTouch();
         }
 #endif
-        Vector3 pos = gameObject.transform.position;
-        if (pos.x >= _limX)
+        // Limites del area de juego
+        Vector3 posActual = gameObject.transform.position;
+        if (posActual.x >= _limX)
         {
-            transform.position = new Vector3(_limX, pos.y, pos.z);
+            transform.position = new Vector3(_limX, posActual.y, posActual.z);
         }
-        else if (pos.x <= -_limX)
+        else if (posActual.x <= -_limX)
         {
-            transform.position = new Vector3(-_limX, pos.y, pos.z);
+            transform.position = new Vector3(-_limX, posActual.y, posActual.z);
         }
 
+        // Actualiza monedas y puntuacion
+        #region UpdateUI
         _score = GameManager.SharedInstance.GetDistance();
         tmpCoins.text = "" + _player.GetCoins();
         tmpScore.text = "" + _score.ToString("0000");
-
+        #endregion
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -151,7 +100,6 @@ public class PlayerController : MonoBehaviour
         {
             GameObject fx = Instantiate(explosion,parent.transform,false);
             fx.transform.position = transform.position;
-            //_player.gameObject.GetComponentInChildren<Animation>().Play();
             a.Stop();
             b.Stop();
             anim.SetBool("alive", false);
@@ -162,13 +110,72 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void MoveSides(float horizontalInput)
+    public void MoveGyro()
     {
-        if (GameManager.SharedInstance.currentGameState == GameState.InGame)
+        float direction;
+#if UNITY_EDITOR
+        direction = Input.GetAxis("Horizontal");
+#else
+        Input.gyro.enabled = true;
+        direction = Input.gyro.rotationRate.y;
+#endif
+        if (direction > 0.1f)
         {
-            transform.Translate(Vector3.right * horizontalInput * velocityMove * Time.deltaTime);
-            //anim.SetBool("move", false);
+            anim.SetBool("move", true);
+            anim.SetFloat("direction", 1.0f);
+        }
+        else if (direction < -0.1f)
+        {
+            anim.SetBool("move", true);
+            anim.SetFloat("direction", -1.0f);
+        }else
+        {
+            anim.SetBool("move", false);
+            anim.SetFloat("direction", 0.0f);
+        }
+        transform.Translate(Vector3.right * direction * velocityMove * Time.deltaTime);
+    }
+
+    public void MoveTouch()
+    {
+        int i = 0;
+        while (i < Input.touchCount)
+        {
+            if (Input.GetTouch(i).position.x > _screenWidth / 2)
+            {
+                transform.Translate(Vector3.right * velocityMove * Time.deltaTime);
+                if (Input.GetTouch(i).phase == TouchPhase.Began)
+                {
+                    anim.SetBool("move", true);
+                    anim.SetFloat("direction", 1.0f);
+                }
+                else if (Input.GetTouch(i).phase == TouchPhase.Ended)
+                {
+                    anim.SetBool("move", false);
+                    anim.SetFloat("direction", 0.0f);
+                }
+            }
+
+            if (Input.GetTouch(i).position.x < _screenWidth / 2)
+            {
+                transform.Translate(Vector3.left * velocityMove * Time.deltaTime);
+                if (Input.GetTouch(i).phase == TouchPhase.Began)
+                {
+                    anim.SetBool("move", true);
+                    anim.SetFloat("direction", -1.0f);
+                }
+                else if (Input.GetTouch(i).phase == TouchPhase.Ended)
+                {
+                    anim.SetBool("move", false);
+                    anim.SetFloat("direction", 0.0f);
+                }
+            }
+            ++i;
         }
     }
     
+    // if (Input.GetKeyDown(KeyCode.Space))
+    // {
+    //     SaveSystem.Delete();
+    // }
 }

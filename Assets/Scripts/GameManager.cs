@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public List<Boat> AllBoats;
     
+    [SerializeField]
     private float _gameVelocity;
     private float _gameDifficult;
     private float _gameTimeScale = 5f;
