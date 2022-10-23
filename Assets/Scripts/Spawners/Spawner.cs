@@ -48,10 +48,9 @@ public class Spawner : MonoBehaviour
         {
             int idx = Random.Range(0, allEnemies.Length);
             var positionX = GetPositionSpawner();
-            Vector3 position = new Vector3(positionX, -0.5f, 40);
+            Vector3 position = new Vector3(positionX, -0.9f, 40);
             Enemy enemy = Instantiate(allEnemies[idx], enemies, false);
             enemy.transform.position = position;
-            
         }
         else
         {
@@ -64,7 +63,7 @@ public class Spawner : MonoBehaviour
             Debug.Log(pos1 + ":" + pos2);
             for (int i = 0; i < enemiesCount; i++)
             {
-                var position = i == 0 ? new Vector3(pos1, -0.5f, 40) : new Vector3(pos2,-0.5f,40);
+                var position = i == 0 ? new Vector3(pos1, -0.9f, 40) : new Vector3(pos2,-0.9f,40);
                 int idx = Random.Range(0, allEnemies.Length);
                 Enemy enemy = Instantiate(allEnemies[idx], enemies, false);
                 enemy.transform.position = position;

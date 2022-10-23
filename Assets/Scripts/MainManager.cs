@@ -27,7 +27,6 @@ public class MainManager : MonoBehaviour
     {
         coinCounter.text = "" + player.GetCoins();
         maxScore.text = "" + player.score.ToString("0000");
-        boatParent.transform.Rotate(Vector3.up * 15 * Time.deltaTime);
     }
 
     public void CreateData()
