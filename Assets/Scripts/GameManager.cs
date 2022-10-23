@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public enum GameState{
     Menu,
@@ -17,17 +18,21 @@ public enum GameController
 public class GameManager : MonoBehaviour
 {
     public static GameManager SharedInstance;
+    
+    [Header("Settings")]
     public GameState currentGameState;
     public GameController currentGameController;
-
-    public List<Boat> AllBoats;
-    
-    [SerializeField]
     private float _gameVelocity;
-    private float _gameDifficult;
-    private float _gameTimeScale = 5f;
-    private float _gameDifficultIncrement = 0.25f;
-
+    float _gameTimeScale = 5f;
+    private float _gameDifficultIncrement = 0.05f;
+    
+    [Header("UI")] 
+    public TextMeshProUGUI tmpCoins;
+    public TextMeshProUGUI tmpScore;
+    
+    [Header("Player")]
+    public List<Boat> AllBoats;
+    private Player _player;
     private float _distance;
     
     private void Awake()
@@ -37,39 +42,40 @@ public class GameManager : MonoBehaviour
             SharedInstance = this;
         }
     }
-
     private void Start()
     {
-        _gameVelocity = 10;
+        _gameVelocity = 5;
         currentGameState = GameState.InGame;
+        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
         Controller();
         InvokeRepeating(nameof(IncrementDifficult) , _gameTimeScale, _gameTimeScale);
+    }
+    private void Update()
+    {
+        UpdateUI();
+    }
+
+    void UpdateUI()
+    {
+        if (currentGameState == GameState.InGame)
+        {
+            float multiplicator = 1.5f;
+            _distance += Time.deltaTime * multiplicator;
+            tmpCoins.text = "" + _player.GetCoins();
+            tmpScore.text = "" + _distance.ToString("0000");
+        }
+    }
+    void IncrementDifficult()
+    {
+        _gameVelocity += _gameDifficultIncrement;
+        Debug.Log("Incrementando Dificultad");
     }
     public float GetGameVelocity()
     {
         return _gameVelocity;
     }
 
-    public float GetDistance()
-    {
-        return _distance;
-    }
-
-    private void Update()
-    {
-        if (currentGameState == GameState.InGame)
-        {
-            _distance += Time.deltaTime;
-        }
-    }
-
-    void IncrementDifficult()
-    {
-        _gameVelocity += _gameDifficultIncrement;
-        Debug.Log("Incrementando Dificultad");
-    }
-    
-    //Player Boat
+    //Get player boat
     public Boat GetBoat()
     {
         Boat boat = null;
@@ -80,11 +86,11 @@ public class GameManager : MonoBehaviour
                 boat = boats;
             }
         }
-
         return boat;
     }
     
-    //Game States
+    //Set GameStates
+    #region GameStates
     public void GameOver()
     {
         SetGameState(GameState.GameOver);
@@ -114,6 +120,10 @@ public class GameManager : MonoBehaviour
         currentGameState = newGameState;
     }
 
+    #endregion
+    
+    //Get player Controller
+    #region Controller
     void SetGameController(GameController newGameController)
     {
         if (newGameController == GameController.Gyroscope)
@@ -127,7 +137,6 @@ public class GameManager : MonoBehaviour
         }
         currentGameController = newGameController;
     }
-
     void Controller()
     {
         if (!PlayerPrefs.HasKey("GameController"))
@@ -143,6 +152,8 @@ public class GameManager : MonoBehaviour
             SetGameController(GameController.Gyroscope);
         }
     }
+    #endregion
+    
     IEnumerator LoadMain()
     {
         yield return new WaitForSeconds(5);

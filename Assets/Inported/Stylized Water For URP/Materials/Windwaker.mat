@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Windwaker
-  m_Shader: {fileID: -6465566751694194690, guid: a9aea49e19495174f80f910ddb189a37,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: a9aea49e19495174f80f910ddb189a37, type: 3}
   m_ValidKeywords:
   - INTERSECTION_EFFECTS_ON
   - SURFACE_FOAM_ON
@@ -71,8 +70,8 @@ Material:
     - _IntersectionFoamSampling: {r: 1, g: 0, b: 0, a: 0}
     - _NormalsMovement: {r: 0.04, g: 0.36, b: 0, a: 0}
     - _ShoreColor: {r: 0, g: 0.98039216, b: 0.30196065, a: 0}
-    - _SurfaceFoamColor1: {r: 1, g: 1, b: 1, a: 0.3215686}
-    - _SurfaceFoamColor2: {r: 1, g: 1, b: 1, a: 0.7294118}
+    - _SurfaceFoamColor1: {r: 1, g: 1, b: 1, a: 0.2}
+    - _SurfaceFoamColor2: {r: 1, g: 1, b: 1, a: 0.14901961}
     - _SurfaceFoamMovement: {r: 0.7, g: 0, b: 0.47, a: 0.01}
     - _SurfaceFoamSampling: {r: 0.62, g: 0, b: 0, a: 0}
     - _SurfaceFoamTilingAndOffset: {r: -1, g: -1, b: 0.57, a: 0.22}

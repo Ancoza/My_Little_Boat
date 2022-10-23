@@ -1,8 +1,5 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [Header("UI")] 
@@ -18,15 +15,17 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem a;
     public ParticleSystem b;
     
-    private Animator anim;
-    private float _screenWidth;
-    private Player _player;
-    [SerializeField]
+    [Header("Player")][SerializeField]
     private float velocityMove;
+    
     private float _horizontalMove;
     private float _verticalMove;
     private float _limX;
     private float _score;
+    
+    private Animator anim;
+    private float _screenWidth;
+    private Player _player;
 
     private void Awake()
     {
@@ -70,24 +69,7 @@ public class PlayerController : MonoBehaviour
             MoveTouch();
         }
 #endif
-        // Limites del area de juego
-        Vector3 posActual = gameObject.transform.position;
-        if (posActual.x >= _limX)
-        {
-            transform.position = new Vector3(_limX, posActual.y, posActual.z);
-        }
-        else if (posActual.x <= -_limX)
-        {
-            transform.position = new Vector3(-_limX, posActual.y, posActual.z);
-        }
-
-        // Actualiza monedas y puntuacion
-        #region UpdateUI
-        _score = GameManager.SharedInstance.GetDistance();
-        tmpCoins.text = "" + _player.GetCoins();
-        tmpScore.text = "" + _score.ToString("0000");
-        #endregion
-        
+        KeepPlayerInside();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -109,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-
+    
     public void MoveGyro()
     {
         float direction;
@@ -173,9 +155,18 @@ public class PlayerController : MonoBehaviour
             ++i;
         }
     }
-    
-    // if (Input.GetKeyDown(KeyCode.Space))
-    // {
-    //     SaveSystem.Delete();
-    // }
+
+    private void KeepPlayerInside()
+    {
+        //Keep player inside limits
+        Vector3 currentPosition = transform.position;
+        if (currentPosition.x >= _limX)
+        {
+            transform.position = new Vector3(_limX, currentPosition.y, currentPosition.z);
+        }
+        else if (currentPosition.x <= -_limX)
+        {
+            transform.position = new Vector3(-_limX, currentPosition.y, currentPosition.z);
+        }
+    }
 }

@@ -383,11 +383,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3599776970673807484, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
   m_PrefabInstance: {fileID: 2035281457}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &848569229 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3599776971168795313, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-  m_PrefabInstance: {fileID: 2035281457}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,9 +1023,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5532645858257861687, guid: d0724845bcf85ef468670f3557ffbb7a, type: 3}
+      propertyPath: m_Name
+      value: ScoreText
+      objectReference: {fileID: 0}
     - target: {fileID: 5809710904958625257, guid: d0724845bcf85ef468670f3557ffbb7a, type: 3}
       propertyPath: m_Name
-      value: MaxScoreContainer Variant
+      value: Score Container
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0724845bcf85ef468670f3557ffbb7a, type: 3}
@@ -1070,11 +1069,6 @@ Transform:
   m_Father: {fileID: 1729838642}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1877089841 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3599776970329103596, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-  m_PrefabInstance: {fileID: 2035281457}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1915914625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1178,9 +1172,13 @@ PrefabInstance:
       propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7534375124073304590, guid: 33ed59a72d9256541bc640f9df599600, type: 3}
+      propertyPath: m_Name
+      value: CoinText
+      objectReference: {fileID: 0}
     - target: {fileID: 8424175588705995728, guid: 33ed59a72d9256541bc640f9df599600, type: 3}
       propertyPath: m_Name
-      value: Container 2
+      value: Coin Container
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ed59a72d9256541bc640f9df599600, type: 3}
@@ -1191,54 +1189,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 175125851}
     m_Modifications:
-    - target: {fileID: 2941296067508767805, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 3187728136415559583, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970329103596, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970329103599, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970329103599, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970329103599, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970329103599, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970329103599, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970329103599, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970673807480, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_Size.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970673807480, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_Center.y
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970673807480, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_Center.z
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 3599776970673807484, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1287,34 +1237,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3599776970673807486, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: Tcoins
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970673807486, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: Tscore
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970673807487, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: Fx1
-      value: 
-      objectReference: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56, type: 3}
-    - target: {fileID: 3599776970673807487, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: boat
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970673807487, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: Tcoins
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970673807487, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: Tscore
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776970673807487, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: parent
-      value: 
-      objectReference: {fileID: 848569229}
     - target: {fileID: 3599776970673807487, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
       propertyPath: tmpCoins
       value: 
@@ -1323,42 +1245,6 @@ PrefabInstance:
       propertyPath: tmpScore
       value: 
       objectReference: {fileID: 2136647107}
-    - target: {fileID: 3599776970673807487, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: explosion
-      value: 
-      objectReference: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56, type: 3}
-    - target: {fileID: 3599776970673807487, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: boatParent
-      value: 
-      objectReference: {fileID: 1877089841}
-    - target: {fileID: 3599776972281982230, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.97629607
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776972281982230, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.2164396
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776972281982230, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776972281982230, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599776972281982230, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4109453867264510972, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_RenderAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6309699063316422645, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
-      propertyPath: m_RenderAlignment
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
 --- !u!1 &2049148134
@@ -1486,6 +1372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGameState: 0
   currentGameController: 0
+  tmpCoins: {fileID: 1193628596}
+  tmpScore: {fileID: 2136647107}
   AllBoats:
   - {fileID: -129709689381898678, guid: 0910d87a21f3d2e43bd5c1eb467fcc6c, type: 3}
   - {fileID: -3721906506538977032, guid: c0b0a2ea9e09db344ab87c4705b04da2, type: 3}
@@ -1493,7 +1381,6 @@ MonoBehaviour:
   - {fileID: 1990150516006225637, guid: 12dad0c25c4a5a8419da72ad05d136ca, type: 3}
   - {fileID: -5154532545066738737, guid: 57fe55a396548e549bfeb9759e6dd913, type: 3}
   - {fileID: 4099161616698917532, guid: e9ccc27bb6f9f944e8bda508e30456a5, type: 3}
-  _gameVelocity: 0
 --- !u!114 &2112767706
 MonoBehaviour:
   m_ObjectHideFlags: 0
