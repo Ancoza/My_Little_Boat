@@ -4,8 +4,8 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("Prefabs")] 
     public Coin coinPrefab;
-
     public Enemy[] allEnemies;
 
     public Transform coins;
@@ -13,7 +13,11 @@ public class Spawner : MonoBehaviour
 
     readonly float[] _positionSpawner = { -1.0F, 0.0F, 1.0F };
 
-    private float _rateEnemy = 2.0f, _rateCoins = 0.5f, _timeScale = 5, _less = 0.25f;
+    [Header("Spawner settings")] 
+    [SerializeField] private float _rateEnemy = 2.0f;
+    [SerializeField] private float _rateCoins = 0.5f;
+    [SerializeField] private float _timeScale = 5;
+    [SerializeField] private float _less = 0.05f;
 
     private void Start()
     {

@@ -19,7 +19,7 @@ public class MainManager : MonoBehaviour
         
         var b = Instantiate(GetBoat().gameObject, boatParent.transform,false);
         b.transform.parent = boatParent.transform;
-        b.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        `b.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
     }
 
     // Update is called once per frame

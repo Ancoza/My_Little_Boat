@@ -831,6 +831,10 @@ MonoBehaviour:
   - {fileID: 2039314466721781553, guid: 8796743b217fd1d418e729f7c1d17974, type: 3}
   coins: {fileID: 1870328623}
   enemies: {fileID: 600480643}
+  _rateEnemy: 2
+  _rateCoins: 0.5
+  _timeScale: 5
+  _less: 0.05
 --- !u!1 &1805745868
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public GameController currentGameController;
     private float _gameVelocity;
     float _gameTimeScale = 5f;
-    private float _gameDifficultIncrement = 0.05f;
+    private float _gameDifficultIncrement = 0.20f;
     
     [Header("UI")] 
     public TextMeshProUGUI tmpCoins;
