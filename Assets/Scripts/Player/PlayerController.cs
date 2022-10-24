@@ -80,14 +80,14 @@ public class PlayerController : MonoBehaviour
         }
         if (other.CompareTag("Enemy"))
         {
-            // GameObject fx = Instantiate(explosion,parent.transform,false);
-            // fx.transform.position = transform.position;
-            // a.Stop();
-            // b.Stop();
-            // anim.SetBool("alive", false);
-            // GameManager.SharedInstance.GameOver();
-            // _player.AddScore(GameManager.SharedInstance.GetDistance());
-            // _player.SumCoins();
+            GameObject fx = Instantiate(explosion, parent.transform, false);
+            fx.transform.position = transform.position;
+            a.Stop();
+            b.Stop();
+            anim.SetBool("alive", false);
+            GameManager.SharedInstance.GameOver();
+            _player.AddScore(GameManager.SharedInstance.GetDistance());
+            _player.SumCoins();
 
         }
     }
