@@ -75,6 +75,11 @@ public class GameManager : MonoBehaviour
         return _gameVelocity;
     }
 
+    public float GetDistance()
+    {
+        return _distance;
+    }
+
     //Get player boat
     public Boat GetBoat()
     {
