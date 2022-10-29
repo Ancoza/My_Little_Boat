@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Effects")]
     public GameObject explosion;
+    public GameObject bullet;
     public GameObject parent;
     public GameObject boatParent;
 
@@ -70,6 +72,12 @@ public class PlayerController : MonoBehaviour
         }
 #endif
         KeepPlayerInside();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 pos = new Vector3(transform.position.x, -1, 2);
+            Instantiate(bullet,pos,quaternion.identity);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

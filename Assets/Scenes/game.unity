@@ -1242,6 +1242,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3599776970673807487, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4051926107152563220, guid: 72c993554d213734fb3a0bb531091aa2, type: 3}
+    - target: {fileID: 3599776970673807487, guid: dfc39577740a8e84397d9fbe3f87ad4e, type: 3}
       propertyPath: tmpCoins
       value: 
       objectReference: {fileID: 1193628596}
