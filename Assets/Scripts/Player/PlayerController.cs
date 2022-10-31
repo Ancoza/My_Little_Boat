@@ -1,6 +1,9 @@
+using System.Collections;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class PlayerController : MonoBehaviour
 {
     [Header("UI")] 
@@ -29,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private float _screenWidth;
     private Player _player;
 
+    public bool canFire;
     private void Awake()
     {
         _screenWidth = Screen.width;
@@ -73,11 +77,22 @@ public class PlayerController : MonoBehaviour
 #endif
         KeepPlayerInside();
 
+        if (canFire)
+        {
+            
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector3 pos = new Vector3(transform.position.x, -1, 2);
             Instantiate(bullet,pos,quaternion.identity);
         }
+    }
+
+    public void Fire()
+    {
+        Vector3 pos = new Vector3(transform.position.x, -1, 2);
+        Instantiate(bullet,pos,quaternion.identity);
     }
 
     private void OnTriggerEnter(Collider other)
