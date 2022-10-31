@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     [Header("Prefabs")] 
     public Coin coinPrefab;
+    public Tree tree;
     public Enemy[] allEnemies;
 
     public Transform coins;
@@ -24,6 +25,8 @@ public class Spawner : MonoBehaviour
         StartCoroutine(nameof(GenerateEnemies));
         InvokeRepeating(nameof(GenerateCoin),0,_rateCoins);
         InvokeRepeating(nameof(IncrementDifficult) , _timeScale, _timeScale);
+        InvokeRepeating(nameof(GenerateTree) , Random.Range(5,10), 10);
+        
     }
     
     void IncrementDifficult()
@@ -83,6 +86,23 @@ public class Spawner : MonoBehaviour
         
         coin = Instantiate(coinPrefab, coins, false);
         coin.transform.position = position;
+    }
+
+    void GenerateTree()
+    {
+        int random = Random.Range(0, 2);
+        if(random > 0)
+        {
+            Vector3 positionTree = new Vector3(2.5f, -0.5f, 15f);
+            Tree treefall = Instantiate(tree, enemies, false);
+            treefall.transform.position = positionTree;
+        }
+        else
+        {
+            Vector3 positionTree = new Vector3(-2.5f, -0.5f, 15f);
+            Tree treefall = Instantiate(tree, enemies, false);
+            treefall.transform.position = positionTree;
+        }
     }
     
     IEnumerator GenerateEnemies()

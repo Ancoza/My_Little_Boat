@@ -825,6 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 3029754306889525932, guid: 1f45ef59233cdb943a7c39a569c602c7, type: 3}
+  tree: {fileID: 4165218901098014600, guid: b2e1fe3a3c5254243ad5aed222be0772, type: 3}
   allEnemies:
   - {fileID: 380558923605153569, guid: 6a9b75ae2dd77644ab57f99cdb640965, type: 3}
   - {fileID: 675308054071286573, guid: b2f9423c66dd407468902311a3597785, type: 3}
