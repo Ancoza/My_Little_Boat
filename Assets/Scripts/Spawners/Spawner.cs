@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,6 +9,7 @@ public class Spawner : MonoBehaviour
     public Coin coinPrefab;
     public Tree tree;
     public Enemy[] allEnemies;
+    public GameObject shark;
 
     public Transform coins;
     public Transform enemies;
@@ -50,7 +52,7 @@ public class Spawner : MonoBehaviour
     void GenerateEnemy()
     {
         int enemiesCount = Random.Range(0, 3);
-        Debug.Log("enemy range: "+enemiesCount);
+        //Debug.Log("enemy range: "+enemiesCount);
         if (enemiesCount == 0)
         {
             int idx = Random.Range(0, allEnemies.Length);
@@ -67,7 +69,7 @@ public class Spawner : MonoBehaviour
                 pos1 = GetPositionSpawner();
                 pos2 = GetPositionSpawner();
             } while (pos1.Equals(pos2));
-            Debug.Log(pos1 + ":" + pos2);
+            //Debug.Log(pos1 + ":" + pos2);
             for (int i = 0; i < enemiesCount; i++)
             {
                 var position = i == 0 ? new Vector3(pos1, -0.9f, 40) : new Vector3(pos2,-0.9f,40);
@@ -102,6 +104,30 @@ public class Spawner : MonoBehaviour
             Vector3 positionTree = new Vector3(-2.5f, -0.5f, 15f);
             Tree treefall = Instantiate(tree, enemies, false);
             treefall.transform.position = positionTree;
+        }
+    }
+
+    public void GenerateReward()
+    {
+        int randomReward = Random.Range(0, 4);
+        Debug.Log(randomReward);
+        switch (randomReward)
+        {
+            case 0:
+                Debug.Log("YOU WIN 10 COINS");
+                break;
+            case 1:
+                Debug.Log("YOU WIN 1 HELM");
+                break;
+            case 2:
+                Debug.Log("YOU WIN NOTHING");
+                break;
+            case 3:
+                Debug.Log("YOU WIN A SHARK?");
+                break;
+            default:
+                Debug.Log("Default case");
+                break;
         }
     }
     

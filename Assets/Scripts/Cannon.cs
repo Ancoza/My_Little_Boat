@@ -24,7 +24,7 @@ public class Cannon : MonoBehaviour
             Destroy(other.gameObject);
             Instantiate(explosion,transform, false);
             model.SetActive(false);
-            bx.enabled = false;
+            //bx.enabled = false;
             Destroy(gameObject,0.5f);
         }
     }

@@ -974,6 +974,7 @@ MonoBehaviour:
   - {fileID: 380558923605153569, guid: 6a9b75ae2dd77644ab57f99cdb640965, type: 3}
   - {fileID: 675308054071286573, guid: b2f9423c66dd407468902311a3597785, type: 3}
   - {fileID: 2039314466721781553, guid: 8796743b217fd1d418e729f7c1d17974, type: 3}
+  shark: {fileID: 8497063509022535379, guid: f326acd7f736b6342a6c7746c99b98ee, type: 3}
   coins: {fileID: 1870328623}
   enemies: {fileID: 600480643}
   _rateEnemy: 2

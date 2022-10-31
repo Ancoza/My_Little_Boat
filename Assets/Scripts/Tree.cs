@@ -24,4 +24,6 @@ public class Tree : MonoBehaviour
             anim.SetInteger("direction", -1);
         }
     }
+    
+    
 }

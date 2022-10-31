@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     void IncrementDifficult()
     {
         _gameVelocity += _gameDifficultIncrement;
-        Debug.Log("Incrementando Dificultad");
+        //Debug.Log("Incrementando Dificultad");
     }
     public float GetGameVelocity()
     {
