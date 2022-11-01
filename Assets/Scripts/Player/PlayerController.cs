@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private float velocityMove;
 
     private float coldownBullet = 3.0f;
-    private float timer;
+    private float timer = 0.0f;
     
     private float _horizontalMove;
     private float _verticalMove;
@@ -34,8 +34,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private float _screenWidth;
     private Player _player;
-
-    public bool canFire;
+    
     public GameObject FireBullet;
     private void Awake()
     {
