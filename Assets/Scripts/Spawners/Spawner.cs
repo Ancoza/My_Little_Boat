@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
@@ -16,19 +17,18 @@ public class Spawner : MonoBehaviour
 
     readonly float[] _positionSpawner = { -1.0F, 0.0F, 1.0F };
 
-    [Header("Spawner settings")] 
-    [SerializeField] private float _rateEnemy = 2.0f;
-    [SerializeField] private float _rateCoins = 0.5f;
-    [SerializeField] private float _timeScale = 5;
-    [SerializeField] private float _less = 0.05f;
+    //[Header("Spawner settings")] 
+    private float _rateEnemy = 2.0f;
+    private float _rateCoins = 0.5f;
+    private float _timeScale = 5;
+    private float _less = 0.05f;
 
-    private void Start()
+    public void StartSpawner()
     {
         StartCoroutine(nameof(GenerateEnemies));
         InvokeRepeating(nameof(GenerateCoin),0,_rateCoins);
         InvokeRepeating(nameof(IncrementDifficult) , _timeScale, _timeScale);
         InvokeRepeating(nameof(GenerateTree) , Random.Range(5,10), 10);
-        
     }
     
     void IncrementDifficult()

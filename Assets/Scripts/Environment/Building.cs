@@ -8,13 +8,19 @@ public class Building : MonoBehaviour
     
     private void Update()
     {
-        _speed = GameManager.SharedInstance.GetGameVelocity();
-        transform.Translate(Vector3.back * (_speed * Time.deltaTime));
-        
-        if (transform.position.z <= -6)
+        if (GameManager.SharedInstance.currentGameState == GameState.InGame)
         {
-            Environment.SharedInstance.DeleteBuilding();
-            Environment.SharedInstance.AddBuilding();
+            _speed = GameManager.SharedInstance.GetGameVelocity();
+            transform.Translate(Vector3.back * (_speed * Time.deltaTime));
+            if (transform.position.z <= -6)
+            {
+                Environment.SharedInstance.DeleteBuilding();
+                Environment.SharedInstance.AddBuilding();
+            }
+        }
+        else
+        {
+            _speed = 0;
         }
     }
 }

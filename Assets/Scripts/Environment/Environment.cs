@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
@@ -94,6 +92,7 @@ public class Environment : MonoBehaviour
         currentBuildingsB.Remove(oldBuildingB);
         Destroy(oldBuildingB.gameObject);
     }
+    
     public void DeleteAllBuildings()
     {
         for (int i = 0; i < currentBuildings.Count; i++)

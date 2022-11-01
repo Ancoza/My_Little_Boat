@@ -18,6 +18,11 @@ public class Player : MonoBehaviour
         score = data.score;
     }
 
+    public void NewData()
+    {
+        coins = 0;
+        score = 0;
+    }
     public void AddCoin()
     {
         coins++;

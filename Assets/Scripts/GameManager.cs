@@ -29,11 +29,15 @@ public class GameManager : MonoBehaviour
     [Header("UI")] 
     public TextMeshProUGUI tmpCoins;
     public TextMeshProUGUI tmpScore;
+    public TextMeshProUGUI tmpCoinsMain;
+    public TextMeshProUGUI tmpScoreMain;
     
     [Header("Player")]
     public List<Boat> AllBoats;
     private Player _player;
     private float _distance;
+
+    [Header("Buildings")] private Spawner _spawner;
     
     private void Awake()
     {
@@ -44,15 +48,30 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        CreateData();
         _gameVelocity = 5;
-        currentGameState = GameState.InGame;
+        currentGameState = GameState.Menu;
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        _spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
         Controller();
-        InvokeRepeating(nameof(IncrementDifficult) , _gameTimeScale, _gameTimeScale);
     }
     private void Update()
     {
         UpdateUI();
+    }
+    
+    private void CreateData()
+    {
+        if (SaveSystem.LoadPlayer() == null)
+        {
+            Debug.Log("NUll");
+            _player.SavePlayer();
+        }
+        else
+        {
+            Debug.Log("Load Player");
+            //_player.LoadPlayer();
+        }
     }
 
     void UpdateUI()
@@ -63,6 +82,12 @@ public class GameManager : MonoBehaviour
             _distance += Time.deltaTime * multiplicator;
             tmpCoins.text = "" + _player.GetCoins();
             tmpScore.text = "" + _distance.ToString("0000");
+        }
+        else
+        {
+            _player.LoadPlayer();
+            tmpCoinsMain.text = "" + _player.GetCoins();
+            tmpScoreMain.text = "" + _player.score.ToString("0000");
         }
     }
     void IncrementDifficult()
@@ -112,15 +137,18 @@ public class GameManager : MonoBehaviour
     {
         if (newGameState == GameState.Menu)
         {
-            
+            MenuManager.SharedInstance.MainMenu();
         }else if (newGameState == GameState.InGame)
         {
+            MenuManager.SharedInstance.InGame();
+            InvokeRepeating(nameof(IncrementDifficult) , _gameTimeScale, _gameTimeScale);
+            _player.NewData();
+            _spawner.StartSpawner();
             
         }else if (newGameState == GameState.GameOver)
         {
-            MenuGame.SharedInstance.HideGameMenu();
-            _gameVelocity = 0;
             StartCoroutine(nameof(LoadMain));
+            _gameVelocity = 0;
         }
         currentGameState = newGameState;
     }
@@ -162,6 +190,6 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadMain()
     {
         yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("Scenes/Main", LoadSceneMode.Single);
+        SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
     }
 }

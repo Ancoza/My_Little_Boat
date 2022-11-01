@@ -6,7 +6,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager SharedInstance;
     
     [SerializeField]
-    private Canvas mainCanvas, settingCanvas;
+    private Canvas mainCanvas, settingCanvas, gameCanvas;
 
     void Awake()
     {
@@ -18,31 +18,34 @@ public class MenuManager : MonoBehaviour
     
     void Start()
     {
-        ShowMainMenu();
-        HideSettingsMenu();
+        MainMenu();
     }
     
-    public void Play()
+    public void InGame()
     {
-        SceneManager.LoadScene("Game", LoadSceneMode.Single);
+        ShowGameMenu();
         HideMainMenu();
     }
     
     public void OpenSettings()
     {
-        HideMainMenu();
         ShowSettingMenu();
     }
-    
+
+    public void CloseSettings()
+    {
+        HideSettingsMenu();
+    }
     public void OpenStore()
     {
         SceneManager.LoadScene("Shop", LoadSceneMode.Single);
         HideMainMenu();
     }
 
-    public void BackMain()
+    public void MainMenu()
     {
         ShowMainMenu();
+        HideGameMenu();
         HideSettingsMenu();
     }
 
@@ -64,5 +67,15 @@ public class MenuManager : MonoBehaviour
     void HideMainMenu()
     {
         mainCanvas.enabled = false;
+    }
+    
+    //gameCanvas
+    public void ShowGameMenu()
+    {
+        gameCanvas.enabled = true;
+    }
+    public void HideGameMenu()
+    {
+        gameCanvas.enabled = false;
     }
 }

@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     
     [Header("Player")][SerializeField]
     private float velocityMove;
+
+    private float coldownBullet = 3.0f;
+    private float timer;
     
     private float _horizontalMove;
     private float _verticalMove;
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private Player _player;
 
     public bool canFire;
+    public GameObject FireBullet;
     private void Awake()
     {
         _screenWidth = Screen.width;
@@ -50,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-    
+        timer += Time.deltaTime;
 #if UNITY_EDITOR
         if (GameManager.SharedInstance.currentGameState == GameState.InGame && 
             GameManager.SharedInstance.currentGameController == GameController.Gyroscope)
@@ -77,10 +81,7 @@ public class PlayerController : MonoBehaviour
 #endif
         KeepPlayerInside();
 
-        if (canFire)
-        {
-            
-        }
+        FireBullet.SetActive(timer >= coldownBullet);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour
 
     public void Fire()
     {
+        timer = 0.0f;
         Vector3 pos = new Vector3(transform.position.x, -1, 2);
         Instantiate(bullet,pos,quaternion.identity);
     }
