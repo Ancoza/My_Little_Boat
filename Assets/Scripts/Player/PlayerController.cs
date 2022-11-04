@@ -84,8 +84,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Vector3 pos = new Vector3(transform.position.x, -1, 2);
-            Instantiate(bullet,pos,quaternion.identity);
+            Fire();
         }
     }
 

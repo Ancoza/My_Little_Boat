@@ -23,7 +23,7 @@ public class Environment : MonoBehaviour
     }
     void Start()
     {
-        GenerateInitialBuildings();
+        //GenerateInitialBuildings();
     }
     public void AddBuilding()
     {
@@ -100,7 +100,7 @@ public class Environment : MonoBehaviour
             DeleteBuilding();
         }
     }
-    void GenerateInitialBuildings()
+    public void GenerateInitialBuildings()
     {
         for (int i = 0; i < 5; i++)
         {

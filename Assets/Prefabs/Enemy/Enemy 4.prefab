@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4996690219117460407}
   - component: {fileID: 6789108069933192822}
   - component: {fileID: 4165218901098014600}
-  - component: {fileID: 6010547822772602331}
+  - component: {fileID: -4692087840114907848}
   m_Layer: 0
   m_Name: Enemy 4
   m_TagString: Enemy
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be0fe4f6f44e7742a2b0c03465cea16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6010547822772602331
+--- !u!114 &-4692087840114907848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2110489875492875362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc36037f6338acb48af39169e2ad519d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7706e52ab7fd98e48876afe84435470e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointDestruction: 0
+  direction: 1
+  pointDestruction: -1

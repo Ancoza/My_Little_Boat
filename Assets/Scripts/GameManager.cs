@@ -141,14 +141,16 @@ public class GameManager : MonoBehaviour
         }else if (newGameState == GameState.InGame)
         {
             MenuManager.SharedInstance.InGame();
+            Environment.SharedInstance.GenerateInitialBuildings();
             InvokeRepeating(nameof(IncrementDifficult) , _gameTimeScale, _gameTimeScale);
             _player.NewData();
             _spawner.StartSpawner();
             
         }else if (newGameState == GameState.GameOver)
         {
-            StartCoroutine(nameof(LoadMain));
+            //StartCoroutine(nameof(LoadMain));
             _gameVelocity = 0;
+            SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
         }
         currentGameState = newGameState;
     }
@@ -191,5 +193,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
+        StopCoroutine(LoadMain());
     }
 }

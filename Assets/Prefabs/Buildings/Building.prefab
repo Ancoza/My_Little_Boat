@@ -52,6 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3207714542997134493}
   - component: {fileID: 7913257681782069227}
+  - component: {fileID: -2968188741733443270}
   m_Layer: 0
   m_Name: Building
   m_TagString: Untagged
@@ -90,6 +91,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finishPosition: {fileID: 4465583069255403391}
+--- !u!114 &-2968188741733443270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5562667977211500019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7706e52ab7fd98e48876afe84435470e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 1
 --- !u!1 &9147789191038866618
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,9 +42,10 @@ GameObject:
   - component: {fileID: 7278345919756737107}
   - component: {fileID: 7278345919756737106}
   - component: {fileID: 875735719572275903}
-  - component: {fileID: 7589193827411681883}
   - component: {fileID: 1369361118035518859}
   - component: {fileID: 2267830676672765293}
+  - component: {fileID: 1284632362504167633}
+  - component: {fileID: 6931759074137007241}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -94,19 +95,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fxExplosion: {fileID: 681489963828423897, guid: 2dd1d8a64edebc44fbef31a6e537927f, type: 3}
---- !u!114 &7589193827411681883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7278345919756737105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc36037f6338acb48af39169e2ad519d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointDestruction: -1
 --- !u!82 &1369361118035518859
 AudioSource:
   m_ObjectHideFlags: 0
@@ -219,3 +207,29 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &1284632362504167633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7278345919756737105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7706e52ab7fd98e48876afe84435470e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 1
+--- !u!114 &6931759074137007241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7278345919756737105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1677d4a5e5cb764cb36c9b424b9ee02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointDestruction: -1

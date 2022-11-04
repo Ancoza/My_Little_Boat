@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4051926107152563218}
   - component: {fileID: 4051926107152563219}
   - component: {fileID: 4051926107152563216}
+  - component: {fileID: 278902537557484041}
+  - component: {fileID: -3111933106668347971}
   m_Layer: 0
   m_Name: cannon
   m_TagString: Bullet
@@ -79,6 +81,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &278902537557484041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4051926107152563220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7706e52ab7fd98e48876afe84435470e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: 0
+--- !u!114 &-3111933106668347971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4051926107152563220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1677d4a5e5cb764cb36c9b424b9ee02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointDestruction: 15
 --- !u!1 &4051926108200065377
 GameObject:
   m_ObjectHideFlags: 0
