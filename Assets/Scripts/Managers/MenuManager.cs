@@ -6,7 +6,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager SharedInstance;
     
     [SerializeField]
-    private Canvas mainCanvas, settingCanvas, gameCanvas;
+    private Canvas mainCanvas, settingCanvas, gameCanvas, gameOverCanvas;
 
     void Awake()
     {
@@ -26,7 +26,16 @@ public class MenuManager : MonoBehaviour
         ShowGameMenu();
         HideMainMenu();
     }
-    
+
+    public void GameOver()
+    {
+        ShowGameOverMenu();
+    }
+
+    public void CloseGameOver()
+    {
+        HideGameOverMenu();
+    }
     public void OpenSettings()
     {
         ShowSettingMenu();
@@ -47,6 +56,7 @@ public class MenuManager : MonoBehaviour
         ShowMainMenu();
         HideGameMenu();
         HideSettingsMenu();
+        HideGameOverMenu();
     }
 
     //SettingCanvas
@@ -70,12 +80,23 @@ public class MenuManager : MonoBehaviour
     }
     
     //gameCanvas
-    public void ShowGameMenu()
+    void ShowGameMenu()
     {
         gameCanvas.enabled = true;
     }
-    public void HideGameMenu()
+    void HideGameMenu()
     {
         gameCanvas.enabled = false;
+    }
+    
+    //GameOver
+    void ShowGameOverMenu()
+    {
+        gameOverCanvas.enabled = true;
+    }
+
+    void HideGameOverMenu()
+    {
+        gameOverCanvas.enabled = false;
     }
 }

@@ -33,13 +33,15 @@ public class RotationCamera : MonoBehaviour
         }
         else if(GameManager.SharedInstance.currentGameState == GameState.InGame)
         {
-            transform.position = Vector3.Lerp(transform.position, viewGame.position, transitionSpeed);
+            transform.position = Vector3.Lerp(transform.position, viewGame.position, Time.deltaTime * 2f);
             
             Vector3 currentAngle = new Vector3(
                 Mathf.Lerp(transform.rotation.eulerAngles.x, viewGame.transform.rotation.eulerAngles.x, Time.deltaTime * transitionSpeed),
-                0, 0
+                Mathf.Lerp(transform.rotation.eulerAngles.y, viewGame.transform.rotation.eulerAngles.y, Time.deltaTime * transitionSpeed),
+                0
             );
             transform.eulerAngles = currentAngle;
+            
         }else if(GameManager.SharedInstance.currentGameState == GameState.GameOver)
         {
             transform.position = Vector3.Lerp(transform.position, viewDeath.position, transitionSpeed);

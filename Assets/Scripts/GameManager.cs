@@ -148,9 +148,9 @@ public class GameManager : MonoBehaviour
             
         }else if (newGameState == GameState.GameOver)
         {
-            //StartCoroutine(nameof(LoadMain));
+            StartCoroutine(nameof(LoadMain));
             _gameVelocity = 0;
-            SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
+            //SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
         }
         currentGameState = newGameState;
     }
@@ -191,8 +191,9 @@ public class GameManager : MonoBehaviour
     
     IEnumerator LoadMain()
     {
+        MenuManager.SharedInstance.GameOver();
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
-        StopCoroutine(LoadMain());
+        MenuManager.SharedInstance.CloseGameOver();
     }
 }

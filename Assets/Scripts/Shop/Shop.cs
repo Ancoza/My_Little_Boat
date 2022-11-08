@@ -124,6 +124,6 @@ public class Shop : MonoBehaviour
     }
     public void CloseShop()
     {
-        SceneManager.LoadScene("Main", LoadSceneMode.Single);
+        SceneManager.LoadScene("Scenes/game", LoadSceneMode.Single);
     }
 }

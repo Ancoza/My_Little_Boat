@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private float _screenWidth;
     private Player _player;
-    
+
     public GameObject FireBullet;
     private void Awake()
     {
@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetTouch(i).position.x > _screenWidth / 2)
             {
-                transform.Translate(Vector3.right * velocityMove * Time.deltaTime);
+                //transform.Translate(Vector3.right * velocityMove * Time.deltaTime);
                 if (Input.GetTouch(i).phase == TouchPhase.Began)
                 {
                     anim.SetBool("move", true);
@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetTouch(i).position.x < _screenWidth / 2)
             {
-                transform.Translate(Vector3.left * velocityMove * Time.deltaTime);
+                //transform.Translate(Vector3.left * velocityMove * Time.deltaTime);
                 if (Input.GetTouch(i).phase == TouchPhase.Began)
                 {
                     anim.SetBool("move", true);
@@ -177,6 +177,16 @@ public class PlayerController : MonoBehaviour
             }
             ++i;
         }
+    }
+
+    public void MoveRight()
+    {
+        transform.Translate(Vector3.right);
+    }
+
+    public void MoveLeft()
+    {
+        transform.Translate(Vector3.left);
     }
 
     private void KeepPlayerInside()
