@@ -48,38 +48,27 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        CreateData();
+        SaveSystem.InitializedData();
+        //CreateData();
         _gameVelocity = 5;
         currentGameState = GameState.Menu;
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
         _spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
         Controller();
+        _player.LoadPlayer();
     }
     private void Update()
     {
         UpdateUI();
     }
     
-    private void CreateData()
-    {
-        if (SaveSystem.LoadPlayer() == null)
-        {
-            Debug.Log("NUll");
-            _player.SavePlayer();
-        }
-        else
-        {
-            Debug.Log("Load Player");
-            //_player.LoadPlayer();
-        }
-    }
 
     void UpdateUI()
     {
         if (currentGameState == GameState.InGame)
         {
-            float multiplicator = 1.5f;
-            _distance += Time.deltaTime * multiplicator;
+            //float multiplicator = 1.5f;
+            _distance += Time.deltaTime;
             tmpCoins.text = "" + _player.GetCoins();
             tmpScore.text = "" + _distance.ToString("0000");
         }
