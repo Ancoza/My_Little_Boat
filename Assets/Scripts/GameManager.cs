@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     
     [Header("UI")] 
     public TextMeshProUGUI tmpCoins;
+    public TextMeshProUGUI finishCoins;
     public TextMeshProUGUI tmpScore;
     public TextMeshProUGUI tmpCoinsMain;
     public TextMeshProUGUI tmpScoreMain;
@@ -38,7 +39,9 @@ public class GameManager : MonoBehaviour
     private float _distance;
 
     [Header("Buildings")] private Spawner _spawner;
-    
+
+    [SerializeField]
+    private Initializeads ads;
     private void Awake()
     {
         if (SharedInstance == null)
@@ -50,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         SaveSystem.InitializedData();
         //CreateData();
-        _gameVelocity = 5;
+        _gameVelocity = 7;
         currentGameState = GameState.Menu;
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
         _spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
@@ -70,6 +73,7 @@ public class GameManager : MonoBehaviour
             //float multiplicator = 1.5f;
             _distance += Time.deltaTime;
             tmpCoins.text = "" + _player.GetCoins();
+            finishCoins.text = "" + _player.GetCoins();
             tmpScore.text = "" + _distance.ToString("0000");
         }
         else
@@ -122,6 +126,9 @@ public class GameManager : MonoBehaviour
     {
         SetGameState(GameState.Menu);   
     }
+    #endregion
+    
+    
     void SetGameState(GameState newGameState)
     {
         if (newGameState == GameState.Menu)
@@ -129,6 +136,7 @@ public class GameManager : MonoBehaviour
             MenuManager.SharedInstance.MainMenu();
         }else if (newGameState == GameState.InGame)
         {
+            ads.LoadBanner();
             MenuManager.SharedInstance.InGame();
             Environment.SharedInstance.GenerateInitialBuildings();
             InvokeRepeating(nameof(IncrementDifficult) , _gameTimeScale, _gameTimeScale);
@@ -143,8 +151,7 @@ public class GameManager : MonoBehaviour
         }
         currentGameState = newGameState;
     }
-
-    #endregion
+    
     
     //Get player Controller
     #region Controller
