@@ -109,9 +109,9 @@ public class PlayerController : MonoBehaviour
             b.Stop();
             anim.SetBool("alive", false);
             GameManager.SharedInstance.GameOver();
-            _player.AddScore(GameManager.SharedInstance.GetDistance());
-            _player.SumCoins();
-
+            //_player.AddScore(GameManager.SharedInstance.GetDistance());
+            _player.SavePlayer();
+            //_player.SumCoins();
         }
     }
     

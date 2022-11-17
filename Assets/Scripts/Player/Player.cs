@@ -1,28 +1,40 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public int coins;
+    public int anchors;
     public float score;
 
     public void SavePlayer()
     {
+        //Get player stored coins
+        //Add the coins obtained
+        //Save player data;
+        float previousScore = GameManager.SharedInstance.GetDistance();
+        PlayerData data = SaveSystem.LoadPlayer();
+        coins += data.coins;
+        anchors += data.anchors;
+        score = data.score > previousScore ? data.score : previousScore;
         SaveSystem.SavePlayer(this);
     }
 
+    //Player
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
         coins = data.coins;
+        anchors = data.anchors;
         score = data.score;
     }
-
-    public void NewData()
+    public void ResetData()
     {
         coins = 0;
+        anchors = 0;
         score = 0;
     }
+    
+    //Coins
     public void AddCoin()
     {
         coins++;
@@ -32,31 +44,36 @@ public class Player : MonoBehaviour
         return coins;
     }
     
-    public void AddScore(float previousScore)
+    //Anchors
+    public void AddAnchor()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
-        if (data.score > previousScore)
-        {
-            score = data.score;
-        }
-        else
-        {
-            score = previousScore;
-        }
+        anchors++;
+    }
+    public int GetAnchors()
+    {
+        return anchors;
     }
 
-    public void SumCoins()
+    #region Develop Options
+    
+    public void AddMoreCoins()
     {
-        PlayerData data = SaveSystem.LoadPlayer();
-        if (data == null)
-        {
-            SavePlayer();
-        }
-        else
-        {
-            coins += data.coins;
-            SavePlayer();
-        }
-
+        coins += 2000;
+        SaveSystem.SavePlayer(this);
     }
+    public void AddMoreAnchors()
+    {
+        anchors += 100;
+        SaveSystem.SavePlayer(this);
+    }
+    public void DeletePlayerData()
+    {
+        SaveSystem.Delete();
+    }
+    public void InitializedData()
+    {
+        SaveSystem.InitializedData();
+    }
+    
+    #endregion 
 }

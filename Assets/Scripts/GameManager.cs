@@ -28,10 +28,11 @@ public class GameManager : MonoBehaviour
     
     [Header("UI")] 
     public TextMeshProUGUI tmpCoins;
-    public TextMeshProUGUI finishCoins;
     public TextMeshProUGUI tmpScore;
     public TextMeshProUGUI tmpCoinsMain;
     public TextMeshProUGUI tmpScoreMain;
+    public TextMeshProUGUI tmpAnchorsMain;
+    public TextMeshProUGUI finishCoins;
     
     [Header("Player")]
     public List<Boat> AllBoats;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
         SaveSystem.InitializedData();
         //CreateData();
         _gameVelocity = 7;
+        _distance = 0;
         currentGameState = GameState.Menu;
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
         _spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
@@ -73,13 +75,14 @@ public class GameManager : MonoBehaviour
             //float multiplicator = 1.5f;
             _distance += Time.deltaTime;
             tmpCoins.text = "" + _player.GetCoins();
-            finishCoins.text = "" + _player.GetCoins();
             tmpScore.text = "" + _distance.ToString("0000");
+            finishCoins.text = "" + _player.GetCoins();
         }
         else
         {
             _player.LoadPlayer();
             tmpCoinsMain.text = "" + _player.GetCoins();
+            tmpAnchorsMain.text = "" + _player.GetAnchors();
             tmpScoreMain.text = "" + _player.score.ToString("0000");
         }
     }
@@ -140,7 +143,7 @@ public class GameManager : MonoBehaviour
             MenuManager.SharedInstance.InGame();
             Environment.SharedInstance.GenerateInitialBuildings();
             InvokeRepeating(nameof(IncrementDifficult) , _gameTimeScale, _gameTimeScale);
-            _player.NewData();
+            _player.ResetData();
             _spawner.StartSpawner();
             
         }else if (newGameState == GameState.GameOver)
