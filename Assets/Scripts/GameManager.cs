@@ -190,9 +190,10 @@ public class GameManager : MonoBehaviour
     
     IEnumerator LoadMain()
     {
+        yield return new WaitForSeconds(2);
         MenuManager.SharedInstance.GameOver();
         yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
+        SceneManager.LoadScene("Scenes/game", LoadSceneMode.Single);
         MenuManager.SharedInstance.CloseGameOver();
     }
 }

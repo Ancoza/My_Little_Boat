@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
@@ -18,7 +16,7 @@ public class Spawner : MonoBehaviour
     readonly float[] _positionSpawner = { -1.0F, 0.0F, 1.0F };
 
     //[Header("Spawner settings")] 
-    private float _rateEnemy = 2.0f;
+    private float _rateEnemy = 1.5f;
     private float _rateCoins = 0.5f;
     private float _timeScale = 5;
     private float _less = 0.05f;
@@ -51,8 +49,8 @@ public class Spawner : MonoBehaviour
 
     void GenerateEnemy()
     {
-        int enemiesCount = Random.Range(0, 3);
-        //Debug.Log("enemy range: "+enemiesCount);
+        int enemiesCount = Random.Range(0, 5);
+        
         if (enemiesCount == 0)
         {
             int idx = Random.Range(0, allEnemies.Length);
@@ -69,8 +67,8 @@ public class Spawner : MonoBehaviour
                 pos1 = GetPositionSpawner();
                 pos2 = GetPositionSpawner();
             } while (pos1.Equals(pos2));
-            //Debug.Log(pos1 + ":" + pos2);
-            for (int i = 0; i < enemiesCount; i++)
+            
+            for (int i = 0; i < 2; i++)
             {
                 var position = i == 0 ? new Vector3(pos1, -0.9f, 40) : new Vector3(pos2,-0.9f,40);
                 int idx = Random.Range(0, allEnemies.Length);
