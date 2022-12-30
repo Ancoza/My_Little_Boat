@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Swipe : MonoBehaviour
 {
-
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
 
@@ -18,27 +14,50 @@ public class Swipe : MonoBehaviour
 
     void Update()
     {
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            startTouchPosition = Input.GetTouch(0).position;
-        }
-
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        {
-            endTouchPosition = Input.GetTouch(0).position;
-
-            if (endTouchPosition.x > startTouchPosition.x)
+        if (Input.touchCount > 0)
             {
-                _playerController.MoveRight();
-                
-            }
+                Touch touch = Input.GetTouch(0);
 
-            if (endTouchPosition.x < startTouchPosition.x)
-            {
-                _playerController.MoveLeft();
-                
+                // Handle finger movements based on TouchPhase
+                switch (touch.phase)
+                {
+                    //When a touch has first been detected, change the message and record the starting position
+                    case TouchPhase.Began:
+                        // Record initial touch position.
+                        startTouchPosition = touch.position;
+                        break;
+
+                    //Determine if the touch is a moving touch
+                    case TouchPhase.Moved:
+                        // Determine direction by comparing the current touch position with the initial one
+                        Vector2 direction = touch.position - startTouchPosition;
+                        if (direction.x > 0)
+                        {
+                            _playerController.AnimRight();
+                        }
+                        else if (direction.x < 0)
+                        {
+                            _playerController.AnimLeft();
+                        }
+
+                        break;
+
+                    case TouchPhase.Ended:
+                        // Report that the touch has ended when it ends
+
+                        Vector2 directionf = touch.position - startTouchPosition;
+                        if (directionf.x > 0)
+                        {
+                            _playerController.MoveRight();
+                        }
+                        else if (directionf.x < 0)
+                        {
+                            _playerController.MoveLeft();
+                        }
+
+                        break;
+                }
             }
-        }
-        
     }
 }
+

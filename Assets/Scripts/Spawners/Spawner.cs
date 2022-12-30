@@ -49,7 +49,15 @@ public class Spawner : MonoBehaviour
 
     void GenerateEnemy()
     {
-        int enemiesCount = Random.Range(0, 5);
+        int enemiesCount;
+        if (_rateEnemy <= 1f)
+        {
+            enemiesCount = Random.Range(0, 3);
+        }
+        else
+        {
+            enemiesCount = Random.Range(0, 5);
+        }
         
         if (enemiesCount == 0)
         {
@@ -90,18 +98,21 @@ public class Spawner : MonoBehaviour
 
     void GenerateTree()
     {
-        int random = Random.Range(0, 2);
-        if(random > 0)
+        if (_rateEnemy <= 1.0f)
         {
-            Vector3 positionTree = new Vector3(2.5f, -0.5f, 15f);
-            Tree treefall = Instantiate(tree, enemies, false);
-            treefall.transform.position = positionTree;
-        }
-        else
-        {
-            Vector3 positionTree = new Vector3(-2.5f, -0.5f, 15f);
-            Tree treefall = Instantiate(tree, enemies, false);
-            treefall.transform.position = positionTree;
+            int random = Random.Range(0, 2);
+            if(random > 0)
+            {
+                Vector3 positionTree = new Vector3(2.5f, -0.5f, 15f);
+                Tree treefall = Instantiate(tree, enemies, false);
+                treefall.transform.position = positionTree;
+            }
+            else
+            {
+                Vector3 positionTree = new Vector3(-2.5f, -0.5f, 15f);
+                Tree treefall = Instantiate(tree, enemies, false);
+                treefall.transform.position = positionTree;
+            }
         }
     }
 

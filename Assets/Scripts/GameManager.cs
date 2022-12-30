@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Initializeads ads;
+
+    private int boatCount = 7;
     private void Awake()
     {
         if (SharedInstance == null)
@@ -191,9 +193,9 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadMain()
     {
         yield return new WaitForSeconds(2);
-        MenuManager.SharedInstance.GameOver();
-        yield return new WaitForSeconds(5);
+        //MenuManager.SharedInstance.GameOver();
+        //yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Scenes/game", LoadSceneMode.Single);
-        MenuManager.SharedInstance.CloseGameOver();
+        //MenuManager.SharedInstance.CloseGameOver();
     }
 }

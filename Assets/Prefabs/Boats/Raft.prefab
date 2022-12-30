@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8ef08083893e6468922ab9e66c9dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 0
+  id: 7
+  description: Volviendo a los viejos tiempos
+  price: 10000
   isUnlock: 1
   onUse: 1

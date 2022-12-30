@@ -35,26 +35,21 @@ public class Shop : MonoBehaviour
     {
         coinCounter.text = "" + player.GetCoins();
         
-        
         boat.transform.Rotate(Vector3.up * 15 * Time.deltaTime);
 
         currentBoat = allBoats[currentIndex];
         boatPrice.text = "$ " + currentBoat.GetComponent<Boat>().price;
         
-        #if UNITY_EDITOR
-
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             NextBoat();
         }
-
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             PreviousBoat();
         }
-        #endif
-        
-        
+#endif
     }
 
 

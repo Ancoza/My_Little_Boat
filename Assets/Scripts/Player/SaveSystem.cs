@@ -15,6 +15,16 @@ public static class SaveSystem
             
         player.ResetData();
     }
+
+    public static void SaveBoat(Boat boat)
+    {
+        string path = Application.persistentDataPath + "/boatData" + boat.id + ".anc";
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(path, FileMode.OpenOrCreate);
+        BoatData data = new BoatData(boat);
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
     
     public static PlayerData LoadPlayer()
     {
@@ -70,4 +80,10 @@ public static class SaveSystem
         }
     }
 
+    public static string CreateBoatPath(int id)
+    {
+        string path = Application.persistentDataPath + "/boatData" + id + ".anc";
+        return path;
+    }
+    
 }

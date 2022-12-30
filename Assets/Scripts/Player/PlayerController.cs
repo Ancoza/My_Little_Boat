@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _screenWidth = Screen.width;
-        _limX = 1.5f;
+        _limX = 1f;
         _player = gameObject.GetComponent<Player>();
         anim = _player.gameObject.GetComponentInChildren<Animator>();
         anim.SetBool("alive", true);
@@ -48,36 +48,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        Instantiate(GameManager.SharedInstance.GetBoat().gameObject, boatParent.transform);
+        //Instantiate(GameManager.SharedInstance.GetBoat().gameObject, boatParent.transform);
     }
 
     void Update()
     {
         timer += Time.deltaTime;
-#if UNITY_EDITOR
-        if (GameManager.SharedInstance.currentGameState == GameState.InGame && 
-            GameManager.SharedInstance.currentGameController == GameController.Gyroscope)
-        {
-            MoveGyro();
-        }
-        else if(GameManager.SharedInstance.currentGameState == GameState.InGame && 
-                 GameManager.SharedInstance.currentGameController == GameController.Touch)
-        {
-            MoveTouch();
-        }
-#else
-        //Mobile controllers
-        if (GameManager.SharedInstance.currentGameState == GameState.InGame && 
-            GameManager.SharedInstance.currentGameController == GameController.Gyroscope)
-        {
-            MoveGyro();
-        }
-        else if(GameManager.SharedInstance.currentGameState == GameState.InGame && 
-            GameManager.SharedInstance.currentGameController == GameController.Touch)
-        {
-            MoveTouch();
-        }
-#endif
         KeepPlayerInside();
 
         FireBullet.SetActive(timer >= coldownBullet);
@@ -181,12 +157,27 @@ public class PlayerController : MonoBehaviour
 
     public void MoveRight()
     {
+        anim.SetBool("move", false);
         transform.Translate(Vector3.right);
     }
 
     public void MoveLeft()
     {
+        anim.SetBool("move", false);
         transform.Translate(Vector3.left);
+    }
+    
+    public void AnimRight()
+    {
+        anim.SetBool("move", true);
+        anim.SetFloat("direction", 1.0f);
+
+    }
+
+    public void AnimLeft()
+    {
+        anim.SetBool("move", true);
+        anim.SetFloat("direction", -1.0f);
     }
 
     private void KeepPlayerInside()
