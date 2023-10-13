@@ -524,37 +524,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 563955665905410010, guid: 70b9dd78b80f6c545aebb16a8689fe44, type: 3}
   m_PrefabInstance: {fileID: 563955665824303803}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &98756240
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 98756241}
-  m_Layer: 0
-  m_Name: AdsManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &98756241
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98756240}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1381197856}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &117570879
 GameObject:
   m_ObjectHideFlags: 0
@@ -6599,7 +6568,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2112767704}
-  - {fileID: 98756241}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9734,7 +9702,6 @@ GameObject:
   - component: {fileID: 2112767705}
   - component: {fileID: 2112767706}
   - component: {fileID: 2112767707}
-  - component: {fileID: 2112767708}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9784,7 +9751,7 @@ MonoBehaviour:
   - {fileID: 1990150516006225637, guid: 12dad0c25c4a5a8419da72ad05d136ca, type: 3}
   - {fileID: -5154532545066738737, guid: 57fe55a396548e549bfeb9759e6dd913, type: 3}
   - {fileID: 4099161616698917532, guid: e9ccc27bb6f9f944e8bda508e30456a5, type: 3}
-  ads: {fileID: 2112767708}
+  ads: {fileID: 0}
 --- !u!114 &2112767706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9818,18 +9785,6 @@ MonoBehaviour:
   effectsGroup: {fileID: 0}
   music: {fileID: 0}
   effects: {fileID: 0}
---- !u!114 &2112767708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112767702}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 012c16aedfa402d4aa380abf1cf24386, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2117848285
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,9 +41,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Buildings")] private Spawner _spawner;
 
-    [SerializeField]
-    private Initializeads ads;
-
     private int boatCount = 7;
     private void Awake()
     {
@@ -54,7 +51,6 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        SaveSystem.InitializedData();
         //CreateData();
         _gameVelocity = 7;
         _distance = 0;
@@ -141,7 +137,6 @@ public class GameManager : MonoBehaviour
             MenuManager.SharedInstance.MainMenu();
         }else if (newGameState == GameState.InGame)
         {
-            ads.LoadBanner();
             MenuManager.SharedInstance.InGame();
             Environment.SharedInstance.GenerateInitialBuildings();
             InvokeRepeating(nameof(IncrementDifficult) , _gameTimeScale, _gameTimeScale);
