@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour
         MainMenu();
     }
     
-    public void InGame()
+    public void InGameMenu()
     {
         ShowGameMenu();
         HideMainMenu();

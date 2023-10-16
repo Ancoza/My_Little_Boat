@@ -3893,7 +3893,6 @@ GameObject:
   - component: {fileID: 789336971}
   - component: {fileID: 789336970}
   - component: {fileID: 789336969}
-  - component: {fileID: 789336972}
   m_Layer: 5
   m_Name: ButtonRewarded
   m_TagString: Untagged
@@ -3966,19 +3965,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 789336970}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 789336972}
-        m_TargetAssemblyTypeName: Rewarded, Assembly-CSharp
-        m_MethodName: LoadRewarded
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &789336970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4017,18 +4004,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789336967}
   m_CullTransparentMesh: 1
---- !u!114 &789336972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 789336967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4be6315c8e73c540a008f1bc27f1588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &817108372
 GameObject:
   m_ObjectHideFlags: 0
@@ -7939,7 +7914,6 @@ MonoBehaviour:
   shark: {fileID: 8497063509022535379, guid: f326acd7f736b6342a6c7746c99b98ee, type: 3}
   coins: {fileID: 1870328623}
   enemies: {fileID: 600480643}
-  gameManager: {fileID: 2112767705}
 --- !u!4 &1749572236 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3207714542997134493, guid: 41676837c43c8d44db4c49c21c773447, type: 3}
@@ -9615,7 +9589,6 @@ GameObject:
   - component: {fileID: 2108432543}
   - component: {fileID: 2108432542}
   - component: {fileID: 2108432541}
-  - component: {fileID: 2108432544}
   m_Layer: 5
   m_Name: BtnRewardCoins
   m_TagString: Untagged
@@ -9688,19 +9661,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2108432542}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2108432544}
-        m_TargetAssemblyTypeName: Rewarded, Assembly-CSharp
-        m_MethodName: LoadRewarded
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2108432542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9739,18 +9700,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108432539}
   m_CullTransparentMesh: 1
---- !u!114 &2108432544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2108432539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4be6315c8e73c540a008f1bc27f1588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2108977336 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4099890921740684, guid: 9d200fbd47e9c7f45ad54450ebd25b94, type: 3}

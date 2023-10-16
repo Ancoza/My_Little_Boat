@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
         FireBullet.SetActive(timer >= coldownBullet);
 
-        if (Input.GetKeyDown(KeyCode.Space) && timer >= coldownBullet )
+        if (timer >= coldownBullet )
         {
             Fire();
         }

@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner SharedInstance;
     [Header("Prefabs")] 
     public Coin coinPrefab;
     public Tree tree;
@@ -20,18 +21,26 @@ public class Spawner : MonoBehaviour
     private float _rateCoins = 0.5f;
     private float _timeScale = 5;
     private float _less = 0.05f;
+    private bool isWorking = false;
 
-    public GameManager gameManager;
-    void Start()
+    void Awake()
     {
-        StartSpawner();
+        //Singleton
+        if (SharedInstance == null)
+        {
+            SharedInstance = this;
+        }
     }
+
     public void StartSpawner()
     {
-        StartCoroutine(nameof(GenerateEnemies));
-        InvokeRepeating(nameof(GenerateCoin),0,_rateCoins);
-        InvokeRepeating(nameof(IncrementDifficult) , _timeScale, _timeScale);
-        InvokeRepeating(nameof(GenerateTree) , Random.Range(5,10), 10);
+        if (!isWorking) { 
+            StartCoroutine(nameof(GenerateEnemies));
+            InvokeRepeating(nameof(GenerateCoin),0,_rateCoins);
+            InvokeRepeating(nameof(IncrementDifficult) , _timeScale, _timeScale);
+            InvokeRepeating(nameof(GenerateTree) , Random.Range(5,10), 10);
+            isWorking = true;
+        }
     }
     
     void IncrementDifficult()
@@ -93,15 +102,12 @@ public class Spawner : MonoBehaviour
 
     void GenerateCoin()
     {
-        if(gameManager.currentGameState == GameState.InGame){
-
             var positionX = _positionSpawner[Random.Range(0, _positionSpawner.Length)];
             Vector3 position = new Vector3(positionX, -0.2f, 40);
             Coin coin;
             
             coin = Instantiate(coinPrefab, coins, false);
             coin.transform.position = position;
-        }
     }
 
     void GenerateTree()
@@ -152,9 +158,7 @@ public class Spawner : MonoBehaviour
     {
         while( true )
         {
-            if(gameManager.currentGameState == GameState.InGame){
-                Invoke(nameof(GenerateEnemy),0);
-            }
+            Invoke(nameof(GenerateEnemy),0);
             yield return new WaitForSeconds(_rateEnemy);
         }
     }

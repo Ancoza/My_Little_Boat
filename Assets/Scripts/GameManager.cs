@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
     {
         return _gameVelocity;
     }
-
     public float GetDistance()
     {
         return _distance;
@@ -117,38 +116,47 @@ public class GameManager : MonoBehaviour
     #region GameStates
     public void GameOver()
     {
-        SetGameState(GameState.GameOver);
+        SetGameStates(GameState.GameOver);
     }
     public void InGame()
     {
-        SetGameState(GameState.InGame);
+        SetGameStates(GameState.InGame);
+        MenuManager.SharedInstance.InGameMenu();
+        //Generation
+        Environment.SharedInstance.GenerateInitialBuildings();
+        Spawner.SharedInstance.StartSpawner();
+        InvokeRepeating(nameof(IncrementDifficult), _gameTimeScale, _gameTimeScale);
+        //Player
+        _player.ResetData();
     }
     public void Menu() 
     {
-        SetGameState(GameState.Menu);   
+        SetGameStates(GameState.Menu);   
     }
     #endregion
     
     
-    void SetGameState(GameState newGameState)
+    private void SetGameStates(GameState newGameState)
     {
-        if (newGameState == GameState.Menu)
+        switch (newGameState)
         {
-            MenuManager.SharedInstance.MainMenu();
-        }else if (newGameState == GameState.InGame)
-        {
-            Debug.Log("Set Game State InGame");
-            MenuManager.SharedInstance.InGame();
-            Environment.SharedInstance.GenerateInitialBuildings();
-            InvokeRepeating(nameof(IncrementDifficult) , _gameTimeScale, _gameTimeScale);
-            _player.ResetData();
-            //_spawner.StartSpawner();
-            
-        }else if (newGameState == GameState.GameOver)
-        {
-            StartCoroutine(nameof(LoadMain));
-            _gameVelocity = 0;
-            //SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
+            case GameState.Menu:
+                MenuManager.SharedInstance.MainMenu();
+                break;
+            case GameState.InGame:
+                //UI
+
+                //Testing
+                Debug.Log("Set Game State InGame");
+                break;
+            case GameState.GameOver:
+                StartCoroutine(nameof(LoadMain));
+                _gameVelocity = 0;
+                //SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
+                break;
+            default:
+                // Manejar otros casos si es necesario
+                break;
         }
         currentGameState = newGameState;
     }
@@ -188,9 +196,9 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadMain()
     {
         yield return new WaitForSeconds(2);
-        //MenuManager.SharedInstance.GameOver();
-        //yield return new WaitForSeconds(5);
+        MenuManager.SharedInstance.GameOver();
+        yield return new WaitForSeconds(2);
+        MenuManager.SharedInstance.CloseGameOver();
         SceneManager.LoadScene("Scenes/game", LoadSceneMode.Single);
-        //MenuManager.SharedInstance.CloseGameOver();
     }
 }
