@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Variables
     [Header("UI")] 
     public TextMeshProUGUI tmpScore;
     public TextMeshProUGUI tmpCoins;
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
     private Player _player;
 
     public GameObject FireBullet;
+    #endregion
+
     private void Awake()
     {
         _screenWidth = Screen.width;
@@ -58,10 +61,11 @@ public class PlayerController : MonoBehaviour
 
         FireBullet.SetActive(timer >= coldownBullet);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && timer >= coldownBullet )
         {
             Fire();
         }
+        MoveGyro();
     }
 
     public void Fire()
@@ -100,6 +104,7 @@ public class PlayerController : MonoBehaviour
         Input.gyro.enabled = true;
         direction = Input.gyro.rotationRate.y;
 #endif
+        direction = Input.GetAxis("Horizontal");
         if (direction > 0.1f)
         {
             anim.SetBool("move", true);

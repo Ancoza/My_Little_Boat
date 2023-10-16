@@ -137,11 +137,12 @@ public class GameManager : MonoBehaviour
             MenuManager.SharedInstance.MainMenu();
         }else if (newGameState == GameState.InGame)
         {
+            Debug.Log("Set Game State InGame");
             MenuManager.SharedInstance.InGame();
             Environment.SharedInstance.GenerateInitialBuildings();
             InvokeRepeating(nameof(IncrementDifficult) , _gameTimeScale, _gameTimeScale);
             _player.ResetData();
-            _spawner.StartSpawner();
+            //_spawner.StartSpawner();
             
         }else if (newGameState == GameState.GameOver)
         {
@@ -151,7 +152,6 @@ public class GameManager : MonoBehaviour
         }
         currentGameState = newGameState;
     }
-    
     
     //Get player Controller
     #region Controller

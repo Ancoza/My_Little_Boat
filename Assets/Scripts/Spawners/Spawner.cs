@@ -21,6 +21,11 @@ public class Spawner : MonoBehaviour
     private float _timeScale = 5;
     private float _less = 0.05f;
 
+    public GameManager gameManager;
+    void Start()
+    {
+        StartSpawner();
+    }
     public void StartSpawner()
     {
         StartCoroutine(nameof(GenerateEnemies));
@@ -88,12 +93,15 @@ public class Spawner : MonoBehaviour
 
     void GenerateCoin()
     {
-        var positionX = _positionSpawner[Random.Range(0, _positionSpawner.Length)];
-        Vector3 position = new Vector3(positionX, -0.2f, 40);
-        Coin coin;
-        
-        coin = Instantiate(coinPrefab, coins, false);
-        coin.transform.position = position;
+        if(gameManager.currentGameState == GameState.InGame){
+
+            var positionX = _positionSpawner[Random.Range(0, _positionSpawner.Length)];
+            Vector3 position = new Vector3(positionX, -0.2f, 40);
+            Coin coin;
+            
+            coin = Instantiate(coinPrefab, coins, false);
+            coin.transform.position = position;
+        }
     }
 
     void GenerateTree()
@@ -144,7 +152,9 @@ public class Spawner : MonoBehaviour
     {
         while( true )
         {
-            Invoke(nameof(GenerateEnemy),0);
+            if(gameManager.currentGameState == GameState.InGame){
+                Invoke(nameof(GenerateEnemy),0);
+            }
             yield return new WaitForSeconds(_rateEnemy);
         }
     }
