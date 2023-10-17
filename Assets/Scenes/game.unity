@@ -9828,13 +9828,7 @@ MonoBehaviour:
   tmpScoreMain: {fileID: 1433757843}
   tmpAnchorsMain: {fileID: 513308769}
   finishCoins: {fileID: 1716630982}
-  AllBoats:
-  - {fileID: -129709689381898678, guid: 0910d87a21f3d2e43bd5c1eb467fcc6c, type: 3}
-  - {fileID: -3721906506538977032, guid: c0b0a2ea9e09db344ab87c4705b04da2, type: 3}
-  - {fileID: 3036043666357866186, guid: 71c85d920cb2d0f4d8c550b6dfe755d3, type: 3}
-  - {fileID: 1990150516006225637, guid: 12dad0c25c4a5a8419da72ad05d136ca, type: 3}
-  - {fileID: -5154532545066738737, guid: 57fe55a396548e549bfeb9759e6dd913, type: 3}
-  - {fileID: 4099161616698917532, guid: e9ccc27bb6f9f944e8bda508e30456a5, type: 3}
+  allBoats: []
 --- !u!114 &2112767706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9851,6 +9845,7 @@ MonoBehaviour:
   settingCanvas: {fileID: 276616355}
   gameCanvas: {fileID: 1805745872}
   gameOverCanvas: {fileID: 232795942}
+  btnPlay: {fileID: 0}
 --- !u!114 &2112767707
 MonoBehaviour:
   m_ObjectHideFlags: 0
