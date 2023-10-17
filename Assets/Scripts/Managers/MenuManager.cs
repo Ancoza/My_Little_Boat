@@ -1,18 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    public static MenuManager SharedInstance;
+    public static MenuManager sharedInstance;
     
     [SerializeField]
     private Canvas mainCanvas, settingCanvas, gameCanvas, gameOverCanvas;
-
+    [SerializeField]
+    private Button btnPlay;
     void Awake()
     {
-        if (SharedInstance == null)
+        if (sharedInstance == null)
         {
-            SharedInstance = this;
+            sharedInstance = this;
         }
     }
     
@@ -21,6 +23,13 @@ public class MenuManager : MonoBehaviour
         MainMenu();
     }
     
+    public void MainMenu()
+    {
+        ShowMainMenu();
+        HideGameMenu();
+        HideSettingsMenu();
+        HideGameOverMenu();
+    }
     public void InGameMenu()
     {
         ShowGameMenu();
@@ -31,32 +40,24 @@ public class MenuManager : MonoBehaviour
     {
         ShowGameOverMenu();
     }
-
     public void CloseGameOver()
     {
         HideGameOverMenu();
     }
+    
     public void OpenSettings()
     {
         ShowSettingMenu();
     }
-
     public void CloseSettings()
     {
         HideSettingsMenu();
     }
+    
     public void OpenStore()
     {
         SceneManager.LoadScene("Shop", LoadSceneMode.Single);
         HideMainMenu();
-    }
-
-    public void MainMenu()
-    {
-        ShowMainMenu();
-        HideGameMenu();
-        HideSettingsMenu();
-        HideGameOverMenu();
     }
 
     //SettingCanvas
@@ -73,10 +74,12 @@ public class MenuManager : MonoBehaviour
     void ShowMainMenu()
     {
         mainCanvas.enabled = true;
+        btnPlay.interactable = true;
     }
     void HideMainMenu()
     {
         mainCanvas.enabled = false;
+        btnPlay.interactable = false;
     }
     
     //gameCanvas
@@ -94,7 +97,6 @@ public class MenuManager : MonoBehaviour
     {
         gameOverCanvas.enabled = true;
     }
-
     void HideGameOverMenu()
     {
         gameOverCanvas.enabled = false;

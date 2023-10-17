@@ -14,8 +14,6 @@ public class Environment : MonoBehaviour
     public List<Building> currentBuildingsRight;
     public List<Building> currentBuildingsLeft;
 
-    bool isGenerated = false;
-
     void Awake()
     {
         //Singleton
@@ -28,12 +26,9 @@ public class Environment : MonoBehaviour
     #region Generate Buildings
     public void GenerateInitialBuildings()
     {
-        if (!isGenerated) { 
-            for (int i = 0; i < INITIAL_BUILDINGS; i++)
-            {
-                AddBuildings();
-            }
-            isGenerated = true;
+        for (int i = 0; i < INITIAL_BUILDINGS; i++)
+        {
+            AddBuildings();
         }
     }
     public void AddBuildings()

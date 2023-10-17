@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Serialization;
 
 public enum GameState{
     Menu,
@@ -22,9 +24,9 @@ public class GameManager : MonoBehaviour
     [Header("Settings")]
     public GameState currentGameState;
     public GameController currentGameController;
-    private float _gameVelocity;
-    float _gameTimeScale = 5f;
-    private float _gameDifficultIncrement = 0.20f;
+    private float gameVelocity;
+    readonly float gameTimeScale = 5f;
+    private readonly float gameDifficultIncrement = 0.20f;
     
     [Header("UI")] 
     public TextMeshProUGUI tmpCoins;
@@ -35,13 +37,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI finishCoins;
     
     [Header("Player")]
-    public List<Boat> AllBoats;
+    public List<Boat> allBoats;
     private Player _player;
     private float _distance;
-
-    [Header("Buildings")] private Spawner _spawner;
-
-    private int boatCount = 7;
+    
     private void Awake()
     {
         if (SharedInstance == null)
@@ -52,11 +51,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //CreateData();
-        _gameVelocity = 7;
+        gameVelocity = 7;
         _distance = 0;
         currentGameState = GameState.Menu;
         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        _spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
         Controller();
         _player.LoadPlayer();
     }
@@ -64,13 +62,11 @@ public class GameManager : MonoBehaviour
     {
         UpdateUI();
     }
-    
 
     void UpdateUI()
     {
         if (currentGameState == GameState.InGame)
         {
-            //float multiplicator = 1.5f;
             _distance += Time.deltaTime;
             tmpCoins.text = "" + _player.GetCoins();
             tmpScore.text = "" + _distance.ToString("0000");
@@ -86,12 +82,11 @@ public class GameManager : MonoBehaviour
     }
     void IncrementDifficult()
     {
-        _gameVelocity += _gameDifficultIncrement;
-        //Debug.Log("Incrementando Dificultad");
+        gameVelocity += gameDifficultIncrement;
     }
     public float GetGameVelocity()
     {
-        return _gameVelocity;
+        return gameVelocity;
     }
     public float GetDistance()
     {
@@ -102,7 +97,7 @@ public class GameManager : MonoBehaviour
     public Boat GetBoat()
     {
         Boat boat = null;
-        foreach (Boat boats in AllBoats)
+        foreach (Boat boats in allBoats)
         {
             if (boats.onUse)
             {
@@ -121,13 +116,6 @@ public class GameManager : MonoBehaviour
     public void InGame()
     {
         SetGameStates(GameState.InGame);
-        MenuManager.SharedInstance.InGameMenu();
-        //Generation
-        Environment.SharedInstance.GenerateInitialBuildings();
-        Spawner.SharedInstance.StartSpawner();
-        InvokeRepeating(nameof(IncrementDifficult), _gameTimeScale, _gameTimeScale);
-        //Player
-        _player.ResetData();
     }
     public void Menu() 
     {
@@ -135,28 +123,27 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     
-    
     private void SetGameStates(GameState newGameState)
     {
         switch (newGameState)
         {
             case GameState.Menu:
-                MenuManager.SharedInstance.MainMenu();
+                MenuManager.sharedInstance.MainMenu();
                 break;
             case GameState.InGame:
-                //UI
-
-                //Testing
-                Debug.Log("Set Game State InGame");
+                MenuManager.sharedInstance.InGameMenu();
+                Environment.SharedInstance.GenerateInitialBuildings();
+                Spawner.SharedInstance.StartSpawner();
+                InvokeRepeating(nameof(IncrementDifficult), gameTimeScale, gameTimeScale);
+                _player.ResetData();
                 break;
             case GameState.GameOver:
                 StartCoroutine(nameof(LoadMain));
-                _gameVelocity = 0;
+                gameVelocity = 0;
                 //SceneManager.LoadScene("Scenes/Game", LoadSceneMode.Single);
                 break;
             default:
-                // Manejar otros casos si es necesario
-                break;
+                throw new ArgumentOutOfRangeException(nameof(newGameState), newGameState, null);
         }
         currentGameState = newGameState;
     }
@@ -196,9 +183,9 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadMain()
     {
         yield return new WaitForSeconds(2);
-        MenuManager.SharedInstance.GameOver();
+        MenuManager.sharedInstance.GameOver();
         yield return new WaitForSeconds(2);
-        MenuManager.SharedInstance.CloseGameOver();
+        MenuManager.sharedInstance.CloseGameOver();
         SceneManager.LoadScene("Scenes/game", LoadSceneMode.Single);
     }
 }
