@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,9 +8,13 @@ public class MenuManager : MonoBehaviour
     public static MenuManager sharedInstance;
     
     [SerializeField]
-    private Canvas mainCanvas, settingCanvas, gameCanvas, gameOverCanvas;
+    private Canvas mainCanvas, settingCanvas, gameCanvas, gameOverCanvas, instructionsCanvas;
     [SerializeField]
     private Button btnPlay;
+    [SerializeField]
+    private Toggle instructions;
+    private int hide = 0;
+    
     void Awake()
     {
         if (sharedInstance == null)
@@ -25,6 +30,17 @@ public class MenuManager : MonoBehaviour
     
     public void MainMenu()
     {
+        hide = PlayerPrefs.GetInt("hideInstructions");
+        Debug.Log(hide);
+        if (hide==1)
+        {
+            HideInstructionsCanvas();
+        }
+        else
+        {
+            
+            ShowInstructionsCanvas();
+        }
         ShowMainMenu();
         HideGameMenu();
         HideSettingsMenu();
@@ -58,6 +74,11 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Shop", LoadSceneMode.Single);
         HideMainMenu();
+    }
+
+    public void CloseInstructions()
+    {
+        HideInstructionsCanvas();
     }
 
     //SettingCanvas
@@ -100,5 +121,19 @@ public class MenuManager : MonoBehaviour
     void HideGameOverMenu()
     {
         gameOverCanvas.enabled = false;
+    }
+    //Instructions
+    void ShowInstructionsCanvas()
+    {
+        instructionsCanvas.enabled = true;
+    }
+    void HideInstructionsCanvas()
+    {
+        instructionsCanvas.enabled = false;
+    }
+
+    public void instuctions()
+    {
+        PlayerPrefs.SetInt("hideInstructions", 1);
     }
 }
