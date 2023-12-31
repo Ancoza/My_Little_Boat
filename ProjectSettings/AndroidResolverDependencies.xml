@@ -1,10 +1,5 @@
 <dependencies>
   <packages>
-    <package>com.google.android.gms:play-services-ads-identifier:17.0.0</package>
-    <package>com.google.android.gms:play-services-basement:17.2.1</package>
-    <package>com.ironsource.adapters:unityadsadapter:4.3.24</package>
-    <package>com.ironsource.sdk:mediationsdk:7.2.5</package>
-    <package>com.unity3d.ads:unity-ads:4.4.1</package>
     <package>com.unity3d.mediation:mediation-sdk:[1.0,2.0[</package>
     <package>com.unity3d.mediation:unityads-adapter:[1.0,2.0[</package>
   </packages>

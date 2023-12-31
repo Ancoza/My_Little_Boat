@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.Serialization;
 
 public enum GameState{
     Menu,
@@ -24,7 +23,7 @@ public class GameManager : MonoBehaviour
     [Header("Settings")]
     public GameState currentGameState;
     public GameController currentGameController;
-    private float gameVelocity;
+    private float gameVelocity = 0;
     readonly float gameTimeScale = 5f;
     private readonly float gameDifficultIncrement = 0.20f;
     
@@ -38,8 +37,8 @@ public class GameManager : MonoBehaviour
     
     [Header("Player")]
     public List<Boat> allBoats;
-    private Player _player;
-    private float _distance;
+    private Player player;
+    private float distance = 0;
     
     private void Awake()
     {
@@ -50,34 +49,35 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        //CreateData();
-        gameVelocity = 7;
-        _distance = 0;
-        currentGameState = GameState.Menu;
-        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        Controller();
-        _player.LoadPlayer();
+        StartGameSettings();
     }
     private void Update()
     {
         UpdateUI();
     }
 
+    private void StartGameSettings()
+    {
+        currentGameState = GameState.Menu;
+        Controller();
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        player.LoadPlayer();
+    }
     void UpdateUI()
     {
         if (currentGameState == GameState.InGame)
         {
-            _distance += Time.deltaTime;
-            tmpCoins.text = "" + _player.GetCoins();
-            tmpScore.text = "" + _distance.ToString("0000");
-            finishCoins.text = "" + _player.GetCoins();
+            distance += Time.deltaTime;
+            tmpCoins.text = $"{player.GetCoins()}";
+            tmpScore.text = $"{distance.ToString("0000")}";
+            finishCoins.text = $"{player.GetCoins()}";
         }
         else
         {
-            _player.LoadPlayer();
-            tmpCoinsMain.text = "" + _player.GetCoins();
-            tmpAnchorsMain.text = "" + _player.GetAnchors();
-            tmpScoreMain.text = "" + _player.score.ToString("0000");
+            player.LoadPlayer();
+            tmpCoinsMain.text = $"{player.GetCoins()}";
+            tmpAnchorsMain.text = $"{player.GetAnchors()}";
+            tmpScoreMain.text = $"{player.score.ToString("0000")}";
         }
     }
     void IncrementDifficult()
@@ -90,21 +90,21 @@ public class GameManager : MonoBehaviour
     }
     public float GetDistance()
     {
-        return _distance;
+        return distance;
     }
 
     //Get player boat
     public Boat GetBoat()
     {
-        Boat boat = null;
-        foreach (Boat boats in allBoats)
+        Boat selectedBoat = null;
+        foreach (Boat boat in allBoats)
         {
-            if (boats.onUse)
+            if (boat.onUse)
             {
-                boat = boats;
+                selectedBoat = boat;
             }
         }
-        return boat;
+        return selectedBoat;
     }
     
     //Set GameStates
@@ -121,8 +121,6 @@ public class GameManager : MonoBehaviour
     {
         SetGameStates(GameState.Menu);   
     }
-    #endregion
-    
     private void SetGameStates(GameState newGameState)
     {
         switch (newGameState)
@@ -134,8 +132,9 @@ public class GameManager : MonoBehaviour
                 MenuManager.sharedInstance.InGameMenu();
                 Environment.SharedInstance.GenerateInitialBuildings();
                 Spawner.SharedInstance.StartSpawner();
+                gameVelocity = 7;
                 InvokeRepeating(nameof(IncrementDifficult), gameTimeScale, gameTimeScale);
-                _player.ResetData();
+                player.ResetData();
                 break;
             case GameState.GameOver:
                 StartCoroutine(nameof(LoadMain));
@@ -147,22 +146,14 @@ public class GameManager : MonoBehaviour
         }
         currentGameState = newGameState;
     }
-    
-    //Get player Controller
+    #endregion
+
+    /*
+        Get player Controller
+        0 = Gyroscope (D)
+        1 = Touch
+    */
     #region Controller
-    void SetGameController(GameController newGameController)
-    {
-        if (newGameController == GameController.Gyroscope)
-        {
-            PlayerPrefs.SetInt("GameController",0);
-            //mainCamera.GetComponent<TouchController>().enabled = false;
-        }else if (newGameController == GameController.Touch)
-        {
-            PlayerPrefs.SetInt("GameController",1);
-            //mainCamera.GetComponent<TouchController>().enabled = true;
-        }
-        currentGameController = newGameController;
-    }
     void Controller()
     {
         if (!PlayerPrefs.HasKey("GameController"))
@@ -177,6 +168,17 @@ public class GameManager : MonoBehaviour
         {
             SetGameController(GameController.Gyroscope);
         }
+    }
+    void SetGameController(GameController newGameController)
+    {
+        if (newGameController == GameController.Gyroscope)
+        {
+            PlayerPrefs.SetInt("GameController",0);
+        }else if (newGameController == GameController.Touch)
+        {
+            PlayerPrefs.SetInt("GameController",1);
+        }
+        currentGameController = newGameController;
     }
     #endregion
     
