@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public enum GameState{
     Menu,
@@ -34,7 +35,13 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI tmpScoreMain;
     public TextMeshProUGUI tmpAnchorsMain;
     public TextMeshProUGUI finishCoins;
-    
+
+    public Toggle controllerGyro;
+    public Toggle controllerTouch;
+    public Slider generalVolume;
+    public Toggle volumeFX;
+    public Toggle volumeMusic;
+
     [Header("Player")]
     public List<Boat> allBoats;
     private Player player;
@@ -59,10 +66,51 @@ public class GameManager : MonoBehaviour
     private void StartGameSettings()
     {
         currentGameState = GameState.Menu;
-        Controller();
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         player.LoadPlayer();
     }
+    public void OpenSettings()
+    {
+        DataSettings settings = new DataSettings();
+        settings = SaveSettings.LoadGameSettings();
+        Debug.Log($"Open Settings Controller {settings.GetController()} Music: {settings.GetVolumeMusic()} FX: {settings.GetVolumeFX()} ");
+
+        currentGameController = settings.GetController();
+        if(currentGameController == GameController.Gyroscope) 
+        { 
+            controllerGyro.isOn = true;
+        }
+        else
+        {
+            controllerTouch.isOn = true;
+        }
+        generalVolume.value = settings.GetGeneralVolume();
+        volumeMusic.isOn = settings.GetVolumeMusic();
+        volumeFX.isOn = settings.GetVolumeFX();
+    }
+    public void CloseSettings()
+    {
+        Settings settings = new Settings();
+
+        Debug.Log($"Close Settings Music: {volumeMusic.isOn} FX: {volumeFX.isOn} ");
+
+        if (controllerTouch.isOn)
+        {
+            SetGameController(GameController.Touch);
+        }
+        else
+        {
+            SetGameController(GameController.Gyroscope);
+        }
+
+        settings.SetController(currentGameController);
+        settings.SetGeneralVolume(generalVolume.value);
+        settings.SetVolumeMusic(volumeMusic.isOn);
+        settings.SetVolumeFX(volumeFX.isOn);
+        settings.SaveGameSettigns();
+        Debug.Log($"Close Settings Controller {settings.GetController()} Music: {settings.GetVolumeMusic()} FX: {settings.GetVolumeFX()} ");
+    }
+
     void UpdateUI()
     {
         if (currentGameState == GameState.InGame)
@@ -154,21 +202,6 @@ public class GameManager : MonoBehaviour
         1 = Touch
     */
     #region Controller
-    void Controller()
-    {
-        if (!PlayerPrefs.HasKey("GameController"))
-        {
-            PlayerPrefs.GetInt("GameController", 0);
-            SetGameController(GameController.Gyroscope);
-        }
-        else if (PlayerPrefs.GetInt("GameController") == 1)
-        {
-            SetGameController(GameController.Touch); 
-        }else if (PlayerPrefs.GetInt("GameController") == 0)
-        {
-            SetGameController(GameController.Gyroscope);
-        }
-    }
     void SetGameController(GameController newGameController)
     {
         if (newGameController == GameController.Gyroscope)
